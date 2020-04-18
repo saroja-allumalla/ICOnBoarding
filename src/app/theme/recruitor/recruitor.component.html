@@ -1,0 +1,149 @@
+<style>
+.four {
+    display: inline-block;
+    vertical-align: top;
+    width: 96%;
+    align-content: right;
+    justify-content: end;
+}
+
+::ng-deep .dx-button-danger {
+    background-color: '#cc2131'
+}
+</style>
+
+
+<!--<canvas id="mycanvas" class="hello"></canvas>-->
+
+<div  class="m-portlet m-portlet--mobile" style="height: 100%;">
+    <div class="m-portlet__body" style="background-color: #ffffff !important; ">
+        <div class="four">
+            <span style="font-weight: 600; font-size: 24px;">Pending Independent Contractors</span>
+            <span style="float: right">
+                <dx-button
+                    id="button"
+                    text="Refresh List"
+                    icon="revert"
+                    type="success"
+                    [useSubmitBehavior]="true"
+                    (onClick)="onRefreshList()"
+                ></dx-button>  
+            </span>
+            <!--    <dx-button
+                id="button"
+                text="Load Driver"
+                icon="group"
+                type="success"
+                [useSubmitBehavior]="true"
+                (onClick)="dispatchData(grid.instance.getSelectedRowsData()[0].Email)"
+            ></dx-button>
+            -->
+        
+        </div>
+        
+        <br/>
+        <br/>
+        <div
+            style="width: 100%; float: left;"
+        >
+        <dx-data-grid 
+            #grid
+            id="gridContainer"
+            [dataSource]="drivers"
+            [showBorders]="true"
+            [hoverStateEnabled]="true"
+            [showColumnLines]="true"
+            [showRowLines]="true"
+            [selectedRowKeys]="[]"
+            (onRowClick)="OpenDriver($event)"
+            >   
+            <dxo-selection mode="single"></dxo-selection>
+            <dxo-filter-row [visible]="true"></dxo-filter-row> 
+            <dxi-column dataField="DriverTempID" caption="IC ID" alignment="center" [width]="80"></dxi-column>
+            <dxi-column dataField="Email" [width]="250"></dxi-column>
+            <dxi-column dataField="FirstName"></dxi-column>
+            <dxi-column dataField="MiddleName"></dxi-column>
+            <dxi-column dataField="LastName"></dxi-column>
+            <dxi-column dataField="HomePhone"></dxi-column>
+            <dxi-column dataField="LicenseNumber"></dxi-column>
+        
+            <dxo-summary>
+                <dxi-total-item
+                    column="DriverTempID"
+                    summaryType="count">
+                </dxi-total-item>
+            </dxo-summary>
+        </dx-data-grid>
+        </div>
+        
+     <!--<div *ngIf="recruiterHome">
+         <app-recruitor></app-recruitor>
+     </div>-->
+ </div>
+</div>
+
+
+
+
+<!--
+<div style="float: right; align-content: left; width: 35%;" 
+    *ngIf="grid.selectedRowKeys.length">
+    <h3>Driver Information</h3>
+    <div>{{ grid.instance.getSelectedRowsData()[0].Name ? 'Name: '+grid.instance.getSelectedRowsData()[0].Name : ' '}}</div>
+    <div>{{ grid.instance.getSelectedRowsData()[0].BrokerRegion ? 'BrokerRegion: '+grid.instance.getSelectedRowsData()[0].BrokerRegion : ' '}}</div>
+    <div>{{ grid.instance.getSelectedRowsData()[0].BrokerType ? 'BrokerType: '+grid.instance.getSelectedRowsData()[0].BrokerType : ' '}}</div>
+    <div>{{ grid.instance.getSelectedRowsData()[0].SIN ? 'SIN: '+grid.instance.getSelectedRowsData()[0].SIN : ' '}}</div>
+    <div>{{ grid.instance.getSelectedRowsData()[0].BIN ? 'BIN: '+grid.instance.getSelectedRowsData()[0].BIN : ' '}}</div>
+    <div>{{ grid.instance.getSelectedRowsData()[0].CompanyName ? 'CompanyName: '+grid.instance.getSelectedRowsData()[0].CompanyName : ' '}}</div>
+    <div>{{ grid.instance.getSelectedRowsData()[0].StreetName ? 'StreetName: '+grid.instance.getSelectedRowsData()[0].StreetName : ' '}}</div>
+    <div>{{ grid.instance.getSelectedRowsData()[0].Unit ? 'Unit: '+grid.instance.getSelectedRowsData()[0].Unit : ' '}}</div>
+    <div>{{ grid.instance.getSelectedRowsData()[0].City ? 'City: '+grid.instance.getSelectedRowsData()[0].City : ' '}}</div>
+    <div>{{ grid.instance.getSelectedRowsData()[0].Province ? 'Province: '+grid.instance.getSelectedRowsData()[0].Province : ' '}}</div>
+    <div>{{ grid.instance.getSelectedRowsData()[0].Country ? 'Country: '+grid.instance.getSelectedRowsData()[0].Country : ' '}}</div>
+    <div>{{ grid.instance.getSelectedRowsData()[0].PostalCode ? 'PostalCode: '+grid.instance.getSelectedRowsData()[0].PostalCode : ' '}}</div>
+    <div>{{ grid.instance.getSelectedRowsData()[0].AlternateEmail ? 'AlternateEmail: '+grid.instance.getSelectedRowsData()[0].AlternateEmail : ' '}}</div>
+    <div>{{ grid.instance.getSelectedRowsData()[0].HomePhone ? 'HomePhone: '+grid.instance.getSelectedRowsData()[0].HomePhone : ' '}}</div>
+    <div>{{ grid.instance.getSelectedRowsData()[0].CellPhone ? 'CellPhone: '+grid.instance.getSelectedRowsData()[0].CellPhone : ' '}}</div>
+    <div>{{ grid.instance.getSelectedRowsData()[0].EmergencyPhone ? 'EmergencyPhone: '+grid.instance.getSelectedRowsData()[0].EmergencyPhone : ' '}}</div>
+    <div>{{ grid.instance.getSelectedRowsData()[0].Fax ? 'Fax: '+grid.instance.getSelectedRowsData()[0].Fax : ' '}}</div>
+    <div>{{ grid.instance.getSelectedRowsData()[0].Fax2 ? 'Fax2: '+grid.instance.getSelectedRowsData()[0].Fax2 : ' '}}</div>
+    <br/>
+    <h3>Vehicle Information</h3>
+    <div>{{ grid.instance.getSelectedRowsData()[0].VehicleType ? 'VehicleType: '+grid.instance.getSelectedRowsData()[0].VehicleType : ' '}}</div>
+    <div>{{ grid.instance.getSelectedRowsData()[0].LicenseNumber ? 'LicenseNumber: '+grid.instance.getSelectedRowsData()[0].LicenseNumber : ' '}}</div>
+    <div>{{ grid.instance.getSelectedRowsData()[0].LicenseIssueDate ? 'LicenseIssueDate: '+grid.instance.getSelectedRowsData()[0].LicenseIssueDate : ' '}}</div>
+    <div>{{ grid.instance.getSelectedRowsData()[0].LicenseExpiryDate ? 'LicenseExpiryDate: '+grid.instance.getSelectedRowsData()[0].LicenseExpiryDate : ' '}}</div>
+    <div>{{ grid.instance.getSelectedRowsData()[0].VINNo ? 'VINNo: '+grid.instance.getSelectedRowsData()[0].VINNo : ' '}}</div>
+    <div>{{ grid.instance.getSelectedRowsData()[0].VehicleMake ? 'VehicleMake: '+grid.instance.getSelectedRowsData()[0].VehicleMake : ' '}}</div>
+    <div>{{ grid.instance.getSelectedRowsData()[0].VehicleModel ? 'VehicleModel: '+grid.instance.getSelectedRowsData()[0].VehicleModel : ' '}}</div>
+    <div>{{ grid.instance.getSelectedRowsData()[0].VehicleYear ? 'VehicleYear: '+grid.instance.getSelectedRowsData()[0].VehicleYear : ' '}}</div>
+    <div>{{ grid.instance.getSelectedRowsData()[0].VehicleInsurance ? 'VehicleInsurance: '+grid.instance.getSelectedRowsData()[0].VehicleInsurance : ' '}}</div>
+    <div>{{ grid.instance.getSelectedRowsData()[0].InsurancePolicyNo ? 'InsurancePolicyNo: '+grid.instance.getSelectedRowsData()[0].InsurancePolicyNo : ' '}}</div>
+    <div>{{ grid.instance.getSelectedRowsData()[0].InsurancePolicyExpiryDate ? 'InsurancePolicyExpiryDate: '+grid.instance.getSelectedRowsData()[0].InsurancePolicyExpiryDate : ' '}}</div>
+    <div>{{ grid.instance.getSelectedRowsData()[0].LicensePlateNo ? 'LicensePlateNo: '+grid.instance.getSelectedRowsData()[0].LicensePlateNo : ' '}}</div>
+    <div>{{ grid.instance.getSelectedRowsData()[0].LicensePlateExpiryDate ? 'LicensePlateExpiryDate: '+grid.instance.getSelectedRowsData()[0].LicensePlateExpiryDate : ' '}}</div>
+    <div>{{ grid.instance.getSelectedRowsData()[0].WorkerCompensationClass ? 'WorkerCompensationClass: '+grid.instance.getSelectedRowsData()[0].WorkerCompensationClass : ' '}}</div>
+    
+    <h2>Helper Links</h2>
+
+    <dx-button
+        id="button"
+        text="Load Driver"
+        icon="floppy"
+        type="success"
+        [useSubmitBehavior]="true"
+        (onClick)="dispatchData(grid.instance.getSelectedRowsData()[0].Email)"
+    ></dx-button>  
+
+
+
+</div>
+
+
+
+<div style="float: right; align-content: left; width: 35%;" 
+    *ngIf="!grid.selectedRowKeys.length">
+    <h1>Driver Verification Page</h1>
+    <span>Be careful while using this page</span>
+</div>
+-->

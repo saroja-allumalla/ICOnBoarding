@@ -1,0 +1,197 @@
+<dx-form id="form"
+	[formData]="driver">
+	<dxi-item itemType="group" caption="Driver" cssClass="first-group" [colCount]="4">
+		<dxi-item>
+			<div class="form-avatar">
+        <img class="avatar" [src]="imageToShow" alt="Nothing to Show here">
+      </div>
+		</dxi-item>
+		<dxi-item itemType="group" [colSpan]="3">
+				<dxi-item dataField="FirstName" [disabled]="true"></dxi-item>
+				<dxi-item dataField="LastName" [disabled]="true"></dxi-item>
+        <dxi-item dataField="DOB" editorType="dxDateBox" [editorOptions]="{ width: '100%'}" [disabled]="true"></dxi-item>
+		</dxi-item>
+	</dxi-item>
+	<dxi-item itemType="group" cssClass="second-group" [colCount]="2">
+		<dxi-item itemType="group">
+			<dxi-item dataField="Unit" [disabled]="true"></dxi-item>
+			<dxi-item dataField="StreetName" [disabled]="true"></dxi-item>
+			<dxi-item dataField="City" [disabled]="true"></dxi-item>
+		</dxi-item>
+		<dxi-item itemType="group">
+      <dxi-item dataField="HomePhone" [disabled]="true"></dxi-item>
+      <dxi-item dataField="CellPhone" [disabled]="true"></dxi-item>
+      <dxi-item dataField="EmergencyPhone" [disabled]="true"></dxi-item>
+		</dxi-item>
+  </dxi-item>
+  <dxi-item>
+    <div *dxTemplate>
+      <br/>
+      <br/>
+    </div>
+  </dxi-item>
+  <dxi-item itemType="group" caption="Vehicle" cssClass="first-group" [colCount]="4">
+		<dxi-item>
+			<div class="vehicle-avatar"></div>
+		</dxi-item>
+		<dxi-item itemType="group" [colSpan]="3">
+				<dxi-item dataField="VehicleType" [disabled]="true"></dxi-item>
+        <dxi-item dataField="VINNo" [disabled]="true"></dxi-item>
+        <dxi-item dataField="VehicleMake" [disabled]="true"></dxi-item>
+        <dxi-item dataField="VehicleModel" [disabled]="true"></dxi-item>
+        <dxi-item dataField="VehicleYear" [disabled]="true"></dxi-item>
+		</dxi-item>
+	</dxi-item>
+	<dxi-item itemType="group" cssClass="second-group" [colCount]="2">
+		<dxi-item itemType="group" caption="License & Registration">
+			<dxi-item dataField="LicenseNumber" [disabled]="true"></dxi-item>
+      <dxi-item dataField="LicenseIssueDate" [editorOptions]="{ mask: '0000-00-00'}" [disabled]="true"></dxi-item>
+      <dxi-item dataField="LicenseExpiryDate" [editorOptions]="{ mask: '0000-00-00'}" [disabled]="true"></dxi-item>
+      <dxi-item dataField="LicensePlateNo" [disabled]="true"></dxi-item>
+      <dxi-item dataField="LicensePlateExpiryDate" [editorOptions]="{ mask: '0000-00-00'}" [disabled]="true"></dxi-item>
+		</dxi-item>
+		<dxi-item itemType="group" caption="Insurance">
+      <dxi-item dataField="InsuranceName" [disabled]="true"></dxi-item>
+      <dxi-item dataField="InsurancePolicyNo" [disabled]="true"></dxi-item>
+      <dxi-item dataField="InsurancePolicyExpiryDate" [editorOptions]="{ mask: '0000-00-00'}" [disabled]="true"></dxi-item>
+		</dxi-item>
+  </dxi-item>
+  <dxi-item>
+    <div *dxTemplate>
+      <br/>
+      <br/>
+    </div>
+  </dxi-item>
+   <!---<dxi-item itemType="group" caption="Progress" cssClass="second-group" [colCount]="2" [visible]="false">
+      <dxi-item itemType="group" caption="Broker">
+        <dxi-item dataField="Personal" editorType="dxCheckBox" [disabled]="true"></dxi-item>
+        <dxi-item dataField="Vehicle" editorType="dxCheckBox" [disabled]="true"></dxi-item>
+        <dxi-item dataField="Test" editorType="dxCheckBox"  [disabled]="true"></dxi-item>
+        <dxi-item dataField="Interview" editorType="dxCheckBox"  [disabled]="true"></dxi-item>
+        <dxi-item dataField="BCRequired" editorType="dxCheckBox"  [disabled]="true"></dxi-item>
+        <dxi-item dataField="DARequired" editorType="dxCheckBox"  [disabled]="true"></dxi-item>
+        <dxi-item dataField="Consent" [label]="{text: 'Consent Provided'}" editorType="dxCheckBox"  [disabled]="true"></dxi-item>
+      </dxi-item>
+      <dxi-item itemType="group" caption="Recruiter">
+          <dxi-item dataField="RecruiterPersonal" [label]="{text: 'Verify Personal Information'}" editorType="dxCheckBox" [disabled]="true"></dxi-item>
+          <dxi-item dataField="RecruiterVehicle"  [label]="{text: 'Verify Vehicle Information'}" editorType="dxCheckBox" [disabled]="true"></dxi-item>
+          <dxi-item dataField="RecruiterTest"  [label]="{text: 'Verify Test Results'}" editorType="dxCheckBox"  [disabled]="true"></dxi-item>
+      </dxi-item>
+    </dxi-item>-->
+    <dxi-item cssClass="first-group">
+      <div *dxTemplate>
+        <br/>
+        <br/>
+      </div>
+    </dxi-item>
+    <!--<dxi-item itemType="group" caption="Documents" cssClass="second-group" [visible]="false">
+      <dxi-item itemType="group" caption="Broker">
+        <dxi-item dataField="DriversLicenseUploaded" editorType="dxCheckBox" [disabled]="true"></dxi-item>
+        <dxi-item dataField="VehicleInsuranceUploaded" editorType="dxCheckBox" [disabled]="true"></dxi-item>
+        <dxi-item dataField="VehicleRegistrationUploaded" editorType="dxCheckBox"  [disabled]="true"></dxi-item>
+        <dxi-item dataField="BCUploaded" [label]="{text: 'Background Check Report'}" editorType="dxCheckBox"  [disabled]="true"></dxi-item>
+        <dxi-item dataField="DAUploaded" [label]="{text: 'Drivers Abstract'}" editorType="dxCheckBox"  [disabled]="true"></dxi-item>
+        <dxi-item dataField="LeaseDocumentsUploaded" [visible]="driver.LeaseDocumentsRequired" [label]="{text: 'Lease Documents'}" editorType="dxCheckBox"  [disabled]="true"></dxi-item>
+        <dxi-item dataField="VehicleUseUploaded" [label]="{text: 'Vehicle Use'}" editorType="dxCheckBox"  [disabled]="true"></dxi-item>
+        <dxi-item dataField="DirectDepositUploaded" [label]="{text: 'Direct Deposit Form Or Void Cheuqe'}" editorType="dxCheckBox"  [disabled]="true"></dxi-item>
+      </dxi-item>
+    </dxi-item>-->
+    <dxi-item cssClass="first-group">
+      <div *dxTemplate>
+        <br/>
+        <br/>
+      </div>
+    </dxi-item>
+    <dxi-item itemType="group" *ngIf="driver['ApprovedForTraining']" cssClass="first-group" caption="Training">
+        <dxi-item dataField="Aoda" [label]="{text: 'Aoda Training Completion Date'}"  [disabled]="true"></dxi-item>
+        <dxi-item dataField="BrokerManual" [label]="{text: 'Broker Manual Completion Date'}"  [disabled]="true"></dxi-item>
+    </dxi-item>
+    <dxi-item *ngIf="!driver['ApprovedForTraining']" cssClass="first-group" caption="Training">
+      <div *dxTemplate>
+        <br/>
+        <form action="your-action" (submit)="onFormSubmit($event)">
+          <dx-form id="checklist-form"
+                  [formData]="trainingData"
+                  [colCount]="1"
+                  [minColWidth]="300"
+                  [readOnly]="false"
+                  [showColonAfterLabel]="true"
+                  [showValidationSummary]="true"
+                  validationGroup="personalInterview"
+                  #trainingForm
+                  >
+        
+                  <dxi-item itemType="group" caption="Training" style="font-weight: 500;">
+                    <dxi-item dataField="train" 
+                      editorType="dxRadioGroup" [editorOptions]="{dataSource: [{ text: 'Yes', value: true }, { text: 'No', value: false }],  displayExpr: 'text', valueExpr: 'value', layout: 'horizontal' }">
+                          <dxo-label
+                              text="Allow the broker to do training?">
+                          </dxo-label>
+                          <dxi-validation-rule 
+                              type="custom" 
+                              [reevaluate]="true" 
+                              [validationCallback]="booleanCheck" 
+                              message="Please answer vehicle use question">
+                          </dxi-validation-rule> 
+                    </dxi-item>
+                    <dxi-item [visible]="trainingData.train === false" dataField="ReasonForRejection"
+                            editorType="dxSelectBox"
+                            [editorOptions]="{
+                                dataSource: RejectionReasons
+                            }">
+                            <dxo-label>
+                                Reason for rejection
+                            </dxo-label>
+                            <dxi-validation-rule 
+                                type="required"
+                                message="Please select a reason for rejection">
+                            </dxi-validation-rule>
+                        </dxi-item>
+                        <dxi-item [visible]="trainingData.ReasonForRejection === 'Other'" dataField="SpecificReason">
+                            <dxo-label text="Please specify the reason"></dxo-label>
+                            <dxi-validation-rule 
+                                type="required"
+                                message="Please specify the reason for rejection">
+                            </dxi-validation-rule>
+                        </dxi-item>
+                  </dxi-item>
+          </dx-form>
+        </form>
+        <br/>
+        <br/>
+        <div>
+          <div style="float: right">
+            <dx-button
+              id="button"
+              [text]="trainingData.train ? 'Approve For Training' : 'Suspend Broker Application'"
+              icon="floppy"
+              [type]="trainingData.train ? 'success' : 'danger'"
+              [useSubmitBehavior]="true"
+              (onClick)="onboardBroker()"
+            ></dx-button> 
+          </div>
+        </div>        
+        <br/>
+      </div>
+    </dxi-item>
+    <dxi-item cssClass="first-group">
+        <div *dxTemplate>
+          <br/>
+          <br/>
+        </div>
+      </dxi-item>
+    <dxi-item itemType="group" *ngIf="driver['Aoda'] && driver['BrokerManual']" cssClass="first-group" caption="Final Step">       
+        <div *dxTemplate class="text-align-center">         
+          <dx-button id="button" text="PREVIOUS" class="standard-button" type="default" [useSubmitBehavior]="false" icon="back"
+                  (click)="onPrevious($event)">
+          </dx-button>             
+          <dx-button
+          text="Complete Broker Application"
+          class="standard-button-primary"
+          icon="save"
+          type="success"
+          (onClick)="pushBroker(event)"
+        ></dx-button>
+        </div>
+    </dxi-item>
+</dx-form>

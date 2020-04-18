@@ -1,0 +1,34 @@
+<div class="quiz-cover"> 
+    <div>
+    <h2>Broker Manual Quiz</h2> <br/><br/>
+    </div>
+    <div class="test">
+      <div fxLayout="column">
+        <div>
+          <ng-container *ngFor="let qn of questions; let i = index">
+            <div>{{qn.question}}. {{qn.questionText}}</div>
+            <br/>
+            <dx-list
+            [dataSource]="qn.Options" #list
+            [height]="auto"
+            [selectionMode]="selectionModeValue"
+            [selectAllMode]="selectAllModeVlaue"
+            [showSelectionControls]="true"
+            [selectedItemKeys]="[]"
+            (onItemClick)="onItemClick($event, i)"
+          ></dx-list>
+          <br/>
+          </ng-container>
+        <dx-button
+          id="button"
+          text="Submit Answers"
+          icon="floppy"
+          type="success"
+          [useSubmitBehavior]="true"
+          (onClick)="onSubmitAnswers()"
+        ></dx-button>
+  
+        </div>
+      </div>
+    </div>
+    </div>

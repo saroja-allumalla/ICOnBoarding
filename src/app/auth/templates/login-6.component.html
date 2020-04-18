@@ -1,0 +1,109 @@
+<div class="m-grid__item m-grid__item--fluid m-grid m-grid--hor m-login m-login--signin m-login--2 m-login-2--skin-2"
+    id="m_login">
+    <div class="m-grid__item m-grid__item--fluid	m-login__wrapper">
+        <div class="m-login__container">
+            <div class="m-login__logo">
+                <a href="#">
+                    <img src="/auth/logos/apple_logo.jpg" style="width: 440px;">
+                    <!-- <img src="~/logos/logo-light-3.png" style="width: 300px"> -->
+                </a>
+                <div class="">
+                    <div class="m-grid m-grid--hor m-grid--root m-page">
+                        <div class="m-grid__item m-grid__item--fluid m-grid m-grid--hor m-login m-login--signin mll-login--2 m-login-2--skin-2"
+                            id="m_login">
+                            <div class="">
+                                <div class="m-login__container">
+                                    <div class="m-login__logo">
+                                        <a href="#">
+                                            <!-- <img src="~/logos/logo-9.png" style="width: 300px"> -->
+                                            <!-- <img src="~/logos/logo-light-3.png" style="width: 300px"> -->
+                                        </a>
+                                        <div class="m-login__head">
+                                            <h4 class="m-widget1__number m--font-brand">
+                                                <br/>
+                                                Hey, good to see you again!
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <div id="dataDiv"></div>
+                                    <div class="m-login__signin">
+                                        <form class="m-login__form m-form" action="" method="post">
+                                            <input type="hidden" id="ReturnUrl" name="ReturnUrl" value="/auth/connect/authorize/callback?response_type=id_token%20token&amp;client_id=implicit&amp;state=8LBDDIJDtK33H1TQuL5BPHO3FC55IigGgePEDDFx&amp;redirect_uri=http%3A%2F%2F10.10.170.230%2Fapp%2Findex&amp;scope=openid%20profile%20email%20aex&amp;nonce=8LBDDIJDtK33H1TQuL5BPHO3FC55IigGgePEDDFx">
+                                            <div class="form-group m-form__group">
+                                                <input class="form-control m-input" placeholder="Username" autofocus=""
+                                                    type="text" data-val="true" data-val-required="The Username field is required."
+                                                    id="Username" name="Username" value="">
+                                            </div>
+                                            <div class="form-group m-form__group">
+                                                <input type="password" class="form-control m-input m-login__form-input--last"
+                                                    placeholder="Password" autocomplete="off" data-val="true"
+                                                    data-val-required="The Password field is required." id="Password"
+                                                    name="Password">
+                                            </div>
+                                            <div class="row m-login__form-sub">
+                                                <div class="col m--align-left m-login__form-left">
+                                                    <div class="m-form__group form-group row" style="width: 190px">
+                                                        <label class="col-9 col-form-label">
+                                                            Remember me?
+                                                        </label>
+                                                        <div class="col-3">
+                                                            <span class="m-switch m-switch--success">
+                                                                <label>
+                                                                    <input type="checkbox" data-val="true"
+                                                                        data-val-required="The RememberLogin field is required."
+                                                                        id="RememberLogin" name="RememberLogin" value="true">
+                                                                    <span></span>
+                                                                </label>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col m--align-right m-login__form-right">
+                                                    <a href="javascript:;" id="m_login_forget_password" class="m-link">
+                                                        Forget Password ?
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="m-login__form-action">
+                                                <button class="btn btn-outline-focus m-btn m-btn--pill m-btn--custom  m-login__btn">Login</button>
+                                            </div>
+                                            <input name="__RequestVerificationToken" type="hidden" value="CfDJ8AFTvyRKQjFKrRuBz7YvIzvOk1udN_Ap6YzOLZ3DbRLeyhq5fUYIbcHBawlyvirl_qG3lfeMrK_ip1226EvFmKpZux25vGfD7DX8zwzsWPIBe8a8r1M0Yf7AORLvfkNEkKf2d1Mz_GFTyfLKcI0XDy0"><input
+                                                name="RememberLogin" type="hidden" value="false">
+                                        </form>
+                                    </div>
+                                    <div class="m-login__forget-password">
+                                        <div class="m-login__head">
+                                            <h3 class="m-login__title">
+                                                Forgotten Password ?
+                                            </h3>
+                                            <div class="m-login__desc">
+                                                Enter your email to reset your password:
+                                            </div>
+                                        </div>
+                                        <form class="m-login__form m-form" action="">
+                                            <div class="form-group m-form__group">
+                                                <input class="form-control m-input" type="text" placeholder="Username"
+                                                    name="email" id="m_username" autocomplete="off">
+                                            </div>
+                                            <div class="m-login__form-action">
+                                                <button id="m_forget_password_submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air m-login__btn m-login__btn--primary">
+                                                    Request
+                                                </button>
+                                                &nbsp;&nbsp;
+                                                <button id="m_login_forget_password_cancel" class="btn btn-outline-focus m-btn m-btn--pill m-btn--custom  m-login__btn">
+                                                    Cancel
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

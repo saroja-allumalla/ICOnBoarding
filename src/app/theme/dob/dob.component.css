@@ -1,0 +1,147 @@
+::ng-deep .dx-field-item-label-text {
+    display: none !important;
+    color: #fff;
+    font-weight: 500;
+}
+
+::ng-deep .m-wizard__step-label {
+    font-size: 13px !important;
+}
+
+.m-wizard.m-wizard--4 .m-wizard__head {
+    padding: none !important;
+}
+
+/* .container{
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    padding: 100px 40px;
+    text-align: center;
+    color: white;
+  } */
+
+  .form-container{    
+    max-width: 550px;
+    min-width: 300px;
+    margin-left:200px;
+    margin-top:100px;
+  }
+
+.text-align-center{
+    text-align: center;
+}
+
+.standard-button{
+    width: 120px;        
+    border-color: transparent;
+    margin-top: .8rem;            
+}
+
+
+.standard-button:hover{
+    background-color: #299781!important;    
+    font-size:14px;         
+}
+
+.standard-button-primary{
+    margin-top:.8rem;  
+}
+
+.standard-button-primary:hover{
+    background-color: #299781!important;         
+    font-size:14px;         
+}
+
+.width-large{
+    width: 150px!important;
+}
+
+.margin-top{
+    margin-top: 1rem;
+}
+
+.margin-top-small{
+    margin-top: 1rem;
+}
+
+.margin-top-medium{
+    margin-top: 2rem;
+}
+
+.margin-top-large{
+    margin-top: 3rem;
+}
+
+.margin-top1{
+    margin-top: 10px;
+}
+
+.margin-bottom{
+    margin-top: 1rem;
+}
+
+.margin-left{
+    margin-left: -40px;    
+}
+
+.padding-top{
+    padding-top: -1px;
+}
+
+.padding-bottom{
+    padding-bottom: -1px;
+}
+
+.padding-left-medium{
+    padding-left: 100px;
+}
+
+.visibility-hidden{
+    display: none;
+}
+
+.visibility-visible{
+    visibility: visible;
+}
+
+.custom-group{    
+    margin-top: -2rem!important;
+}
+
+.custom-field{    
+    margin-top: -1rem!important;
+}
+
+.margin-top-custom{
+    margin-top: -27px;
+}
+
+.margin-left-small{
+    margin-left: 1erm;
+}
+
+.margin-left-medium{
+    margin-left: 2erm;
+}
+
+.align-left{
+    text-align: left;
+}
+
+.text-weight{
+    font-weight: bold;    
+}
+
+.text-weight-500{
+    font-weight: 500;    
+}
+
+.font-size{
+    font-size: 16px;
+}
+
+.error-msg{
+    color: red!important;
+    margin-top:20px;
+}

@@ -1,0 +1,40 @@
+::ng-deep .dx-calendar-navigator .dx-button-has-icon {
+    background-color: #dc3545;
+}
+
+/*
+::ng-deep .dx-calendar-navigator .dx-button-has-icon {
+    background-color: #343a40;
+    color: whitesmoke;
+}
+
+::ng-deep .dx-calendar-navigator .dx-icon .dx-icon-chevronleft{
+    color: whitesmoke;
+    background: whitesmoke;
+    background-color: whitesmoke;
+}
+
+
+::ng-deep .dx-calendar-navigator .dx-button-has-text {
+    background-color: #dc3545;
+}
+    
+
+
+::ng-deep .dx-calendar-navigator .dx-button-text {
+    color: whitesmoke;
+    font-weight: 500 !important;
+}
+
+*/
+
+::ng-deep .dx-label-h-align {
+    align-items: center !important;
+}
+
+
+::ng-deep .dx-texteditor-input  {
+    width: 250px !important;
+}
+
+

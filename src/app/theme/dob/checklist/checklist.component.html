@@ -1,0 +1,169 @@
+<h1>
+  Brokers File
+</h1>
+
+<table width="100%" *ngIf="comp">
+  <tr>
+    <td><b>Driver Temporoy Id:</b></td>
+    <td>{{comp['DriverTempID']}}</td>
+  </tr>
+  <tr>
+    <td><b>First Name:</b></td>
+    <td>{{comp['FirstName']}}</td>
+  </tr>
+  <tr>
+    <td><b>Middle Name:</b></td>
+    <td>{{comp['MiddleName']}}</td>
+  </tr>
+  <tr>
+    <td><b>Last Name:</b></td>
+    <td>{{comp['LastName']}}</td>
+  </tr>
+  <tr>
+    <td><b>Broker Type:</b></td>
+    <td>{{comp['']}}</td>
+  </tr>
+  <tr>
+    <td><b>Company Name:</b></td>
+    <td>{{comp['CompanyName']}}</td>
+  </tr>
+  <tr>
+    <td><b>Street Name:</b></td>
+    <td>{{comp['Street Name']}}</td>
+  </tr>
+  <tr>
+    <td><b>Unit:</b></td>
+    <td>{{comp['Unit']}}</td>
+  </tr>
+  <tr>
+    <td><b>City:</b></td>
+    <td>{{comp['City']}}</td>
+  </tr>
+  <tr>
+    <td><b>Province:</b></td>
+    <td>{{comp['Province']}}</td>
+  </tr>
+  <tr>
+    <td><b>Country:</b></td>
+    <td>{{comp['Country']}}</td>
+  </tr>
+  <tr>
+    <td><b>Postal Code:</b></td>
+    <td>{{comp['PostalCode']}}</td>
+  </tr>
+  <tr>
+    <td><b>Email:</b></td>
+    <td>{{comp['Email']}}</td>
+  </tr>
+  <tr>
+    <td><b>Alternate Email:</b></td>
+    <td>{{comp['AlternateEmail']}}</td>
+  </tr>
+  <tr>
+    <td><b>Home Phone:</b></td>
+    <td>{{comp['HomePhone']}}</td>
+  </tr>
+  <tr>
+    <td><b>Cell Phone:</b></td>
+    <td>{{comp['CellPhone']}}</td>
+  </tr>
+  <tr>
+    <td><b>Name:</b></td>
+    <td>{{comp['']}}</td>
+  </tr>
+  <tr>
+    <td><b>Emergency Phone:</b></td>
+    <td>{{comp['EmergencyPhone']}}</td>
+  </tr>
+</table>
+
+
+
+
+
+<br/>
+<br/>
+<br/>
+
+<div *ngIf="payment">
+<h3> Payment Status </h3>
+<span *ngIf="payment">Done</span>
+</div>
+
+<div *ngIf="files.length">
+  <h3>Driver Documents</h3>
+</div>
+
+<ng-container *ngFor="let file of files, let i = index">
+  <hr />
+  <a [attr.href]="file.link">{{file.content}}</a>
+</ng-container>
+<hr />
+
+
+<form action="your-action">
+  <dx-form id="checklist-form"
+          [formData]="trainingData"
+          [colCount]="1"
+          [minColWidth]="300"
+          [readOnly]="false"
+          [showColonAfterLabel]="true"
+          [showValidationSummary]="true"
+          validationGroup="personalInterview"
+          #trainingForm
+          >
+
+          <dxi-item itemType="group" caption="Training" style="font-weight: 500;">
+            <dxi-item dataField="train" 
+              editorType="dxRadioGroup" [editorOptions]="{dataSource: [{ text: 'Yes', value: true }, { text: 'No', value: false }],  displayExpr: 'text', valueExpr: 'value', layout: 'horizontal' }">
+                  <dxo-label
+                      text="Allow the broker to do training?">
+                  </dxo-label>
+                  <dxi-validation-rule 
+                      type="custom" 
+                      [reevaluate]="true" 
+                      [validationCallback]="booleanCheck" 
+                      message="Please answer vehicle use question">
+                  </dxi-validation-rule> 
+            </dxi-item>
+            <dxi-item [visible]="trainingData.train === false" dataField="ReasonForRejection"
+                    editorType="dxSelectBox"
+                    [editorOptions]="{
+                        dataSource: RejectionReasons
+                    }">
+                    <dxo-label>
+                        Reason for rejection
+                    </dxo-label>
+                    <dxi-validation-rule 
+                        type="required"
+                        message="Please select a reason for rejection">
+                    </dxi-validation-rule>
+                </dxi-item>
+                <dxi-item [visible]="trainingData.ReasonForRejection === 'Other'" dataField="SpecificReason">
+                    <dxo-label text="Please specify the reason"></dxo-label>
+                    <dxi-validation-rule 
+                        type="required"
+                        message="Please specify the reason for rejection">
+                    </dxi-validation-rule>
+                </dxi-item>
+          </dxi-item>
+  </dx-form>
+</form>
+<br/>
+<br/>
+<div>  
+  <div class="text-align-center">
+      <dx-button id="button" text="PREVIOUS" class="standard-button" type="default" [useSubmitBehavior]="false" icon="back"
+      (click)="onPrevious($event)">
+      </dx-button>
+      <dx-button
+        id="button"
+        [text]="trainingData.train ? 'Onboard Driver' : 'Reject the Driver'"
+        class="standard-button-primary width-large"
+        icon="save"
+        [type]="trainingData.train ? 'success' : 'danger'"
+        [useSubmitBehavior]="true"
+        (onClick)="onboardBroker()"
+      ></dx-button> 
+</div>
+</div>

@@ -1,0 +1,62 @@
+::ng-deep form {
+    margin: 10px;
+}
+
+
+.dx-field-item-label-text {
+    color: #333333;
+    font-weight: 600;
+}
+
+
+::ng-deep .dx-calendar-navigator .dx-button-has-icon {
+    background-color: #dc3545;
+}
+
+
+::ng-deep  .dx-field-item-label-text {
+    color: #333333;
+    font-weight: 500;
+}
+
+::ng-deep  .dx-field-item-required-mark {
+    color: #ea4444;
+    font-weight: bold;
+}
+
+/* ::ng-deep  .dx-widget {
+    color: #333333;
+    font-weight: regular;
+    font-size: 13px;
+    font-family: 'Poppins', 'Helvetica Neue', 'Segoe UI', Helvetica, Verdana, sans-serif;
+    line-height: 1.35715;
+} */
+
+::ng-deep  .dx-box-item-content {
+    font-size: 13px;
+}
+
+::ng-deep .div {
+    padding: 5px;
+}
+
+/* ::ng-deep  .dx-field-item-label-location-left {
+    padding-right: 10px;
+}
+
+
+::ng-deep .dx-button-has-text .dx-button-content {
+    padding: 7px 18px 8px;
+}
+
+::ng-deep .dx-button-success {
+    background-color: #2CA189;
+    border-color: #278d78;
+    color: #fff;
+}
+
+::ng-deep .dx-button-danger {
+    background-color: #F3425F;
+    border-color: #f12a4b;
+    color: #fff;
+} */

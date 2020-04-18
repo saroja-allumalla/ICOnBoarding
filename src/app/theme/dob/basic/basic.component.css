@@ -1,0 +1,9 @@
+::ng-deep .padding-zero {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+::ng-deep .padding-zero .dx-form-group-content {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}

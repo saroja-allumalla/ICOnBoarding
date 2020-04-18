@@ -1,0 +1,121 @@
+<form action="your-action" (submit)="onFormSubmit($event)">
+    <dx-form id="driver-form" 
+    [formData]="driverTemp"  
+    [readOnly]="false" 
+    [width]="850"
+        [showColonAfterLabel]="true" 
+        [showValidationSummary]="false" 
+        validationGroup="driverTempData" 
+        #driverInformationForm>
+        <dxi-item itemType="group" style="font-weight: 500;">
+            <dxi-item dataField="Charges" editorType="dxRadioGroup"
+                [editorOptions]="{dataSource: [{ text: 'Yes', value: true }, { text: 'No', value: false }],  displayExpr: 'text', valueExpr: 'value', layout: 'horizontal' }">
+                <dxo-label text="Do you have any current pending criminal charges against you?"></dxo-label>
+                <dxi-validation-rule type="custom" [reevaluate]="true" [validationCallback]="booleanCheck"
+                    message="Please answer vehicle use question"></dxi-validation-rule>
+            </dxi-item>
+            <dxi-item dataField="Conviction" editorType="dxRadioGroup"
+                [editorOptions]="{dataSource: [{ text: 'Yes', value: true }, { text: 'No', value: false }],  displayExpr: 'text', valueExpr: 'value', layout: 'horizontal' }">
+                <dxo-label text="Do you have any criminal convictions against you?"></dxo-label>
+            </dxi-item>
+            <dxi-item dataField="BrokerRegion" editorType="dxSelectBox"
+                [editorOptions]="{ dataSource: brokerRegion, displayExpr: 'Description', valueExpr: 'DriverRegionID'}">
+                <dxo-label text="Select the region where the work is based at?"></dxo-label>
+                <dxi-validation-rule type="required" message="Broker Region is required"></dxi-validation-rule>
+            </dxi-item>
+            <dxi-item dataField="BrokerType" editorType="dxSelectBox"
+                [editorOptions]="{ dataSource: brokerType }">
+                <dxo-label text="Select broker type"></dxo-label>
+                <dxi-validation-rule type="required" message="Broker Type is required">
+                </dxi-validation-rule>
+            </dxi-item>
+            <dxi-item dataField="StartDate" editorType="dxDateBox" [editorOptions]="StartDateEditorOptions">
+                <dxo-label text="When are you available to start available to start? (MM/DD/YYYY)">
+                </dxo-label>
+                <dxi-validation-rule type="required" message="Start Date is required">
+                </dxi-validation-rule>
+            </dxi-item>
+            <dxi-item dataField="VehicleUseRequired" editorType="dxRadioGroup"
+                [editorOptions]="{dataSource: [{ text: 'Yes', value: true }, { text: 'No', value: false }],  displayExpr: 'text', valueExpr: 'value', layout: 'horizontal' }">
+                <dxo-label text="Is your vehicle registered under your name?">
+                </dxo-label>
+                <dxi-validation-rule type="custom" [reevaluate]="true" [validationCallback]="booleanCheck"
+                    message="Please answer vehicle use question">
+                </dxi-validation-rule>
+            </dxi-item>
+            <dxi-item dataField="BCRequired" editorType="dxRadioGroup"
+                [editorOptions]="{dataSource: [{ text: 'Yes', value: true }, { text: 'No', value: false }],  displayExpr: 'text', valueExpr: 'value', layout: 'horizontal' }">
+                <dxo-label text="Did you bring your Background Check Report (less than 180 days old)?">
+                </dxo-label>
+                <dxi-validation-rule type="custom" [reevaluate]="true" [validationCallback]="booleanCheck"
+                    message="Please answer the background check question">
+                </dxi-validation-rule>
+            </dxi-item>
+            <dxi-item dataField="DARequired" editorType="dxRadioGroup"
+                [editorOptions]="{dataSource: [{ text: 'Yes', value: true }, { text: 'No', value: false }],  displayExpr: 'text', valueExpr: 'value', layout: 'horizontal' }">
+                <dxo-label text="Did you bring your Drivers Abstact (less than 90 days old)?">
+                </dxo-label>
+                <dxi-validation-rule type="custom" [reevaluate]="true" [validationCallback]="booleanCheck"
+                    message="Please answer the Drivers abstract question">
+                </dxi-validation-rule>
+            </dxi-item>
+            <dxi-item dataField="LeaseDocumentsRequired" editorType="dxRadioGroup"
+                [editorOptions]="{dataSource: [{ text: 'Yes', value: true }, { text: 'No', value: false }],  displayExpr: 'text', valueExpr: 'value', layout: 'horizontal' }">
+                <dxo-label text="Is the Independant Contractor's vehicle leased?">
+                </dxo-label>
+                <dxi-validation-rule type="custom" [reevaluate]="true" [validationCallback]="booleanCheck"
+                    message="Please answer the vehicle lease question">
+                </dxi-validation-rule>
+            </dxi-item>        
+            <dxi-item dataField="ValidWorkPermit" editorType="dxRadioGroup"
+                [editorOptions]="{dataSource: [{ text: 'Yes', value: true }, { text: 'No', value: false }],  displayExpr: 'text', valueExpr: 'value', layout: 'horizontal',onValueChanged: onValidWorkPermitChanged }">
+                <dxo-label text="Do you have the valid permit to work in Canada?">
+                </dxo-label>
+                <dxi-validation-rule type="custom" [reevaluate]="true" [validationCallback]="booleanCheck"
+                    message="Please answer the valid permit to work in Canada question">
+                </dxi-validation-rule>
+            </dxi-item>    
+            <dxi-item dataField="ProceedWithApplicant" editorType="dxRadioGroup"
+                [editorOptions]="{dataSource: [{ text: 'Yes', value: true }, { text: 'No', value: false }],  displayExpr: 'text', valueExpr: 'value', layout: 'horizontal', onValueChanged: onProceedApplicantValueChanged }">
+                <dxo-label text="Do you want to proceed with the Applicant?">
+                </dxo-label>
+                <dxi-validation-rule type="custom" [reevaluate]="true" [validationCallback]="booleanCheck"
+                    message="Do you want to proceed with the Applicant?">
+                </dxi-validation-rule>
+            </dxi-item>
+            <dxi-item [visible]="!isProceedWithApplicant" dataField="ReasonForRejection"
+                editorType="dxSelectBox" [editorOptions]="{
+                    dataSource: RejectionReasons,
+                    onValueChanged:onRejectionReasonValueChanged
+                }">
+                <dxo-label>
+                    Reason for rejection
+                </dxo-label>
+                <dxi-validation-rule type="required" message="Please select a reason for rejection">
+                </dxi-validation-rule>
+            </dxi-item>
+            <dxi-item [visible]="rejectionReasonValue === 'Other'" dataField="SpecificReason">
+                <dxo-label text="Please specify the reason"></dxo-label>
+                <dxi-validation-rule type="required" message="Please specify the reason for rejection">
+                </dxi-validation-rule>
+            </dxi-item>            
+        </dxi-item>
+        <dxi-item colSpan="3">
+            <div *dxTemplate class="text-align-center margin-top-large">
+               <dx-button id="button" text="CLEAR" 
+                          class="standard-button"
+                          icon="clear"
+                          type="danger" [useSubmitBehavior]="false" (click)="onResetForm($event)">
+               </dx-button>
+               <dx-button id="button" text="PREVIOUS" class="standard-button" type="default" [useSubmitBehavior]="false" icon="back"
+                       (click)="onPrevious($event)">
+                   </dx-button>
+               <dx-button id="button"  [text]=" (isProceed) ? 'PROCEED' :  'END PROCESS'"
+                class="standard-button-primary" icon="save" type="success" [useSubmitBehavior]="true" tabindex="12">
+               </dx-button>                                                   
+            </div>
+        </dxi-item>           
+    </dx-form>
+</form>
+
+  

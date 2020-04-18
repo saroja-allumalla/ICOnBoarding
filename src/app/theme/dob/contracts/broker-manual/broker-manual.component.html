@@ -1,0 +1,14 @@
+<div class="container" style="align-content: left">
+  <pdf-viewer 
+  style="height: 600px;"
+  [fit-to-page]="true"  
+  src="../assets/app/media/img/files/Broker_Manual_(2018).pdf"></pdf-viewer>
+</div>
+<dx-button
+id="button"
+text="Mark As Read"
+icon="floppy"
+type="success"
+[useSubmitBehavior]="true"
+(onClick)="onFinishedReading()"
+></dx-button>

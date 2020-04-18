@@ -1,0 +1,473 @@
+<h1>Applications For Signature</h1>
+<small>Please download these forms once the broker has completed entering all his/her information.</small><br />
+<a target="_blank" [attr.href]="printWSUrl">Download WSIB Application</a><br />
+<a target="_blank" [attr.href]="printVBUrl">Download Vendor/Broker Application</a><br />
+<a target="_blank" [attr.href]="printICUrl">Download IC Agreement</a><br />
+<hr />
+<h1>Documents</h1>
+<small>From documents below, WSIB document is the <b>ONLY OPTIONAL</b> document which can be skipped during onboarding
+    process. But <b>IT MUST</b> be uploaded as soon as the document is available.</small>
+<table>
+    <tr>
+        <th width="35%"></th>
+        <th width="20%"></th>
+        <th width="20%"></th>
+        <th width="25%"></th>
+    </tr>
+    <tr>
+        <td>
+            Driver's License
+        </td>
+        <td *ngIf="!driversLicenseFile">
+            <dx-file-uploader [multiple]="false" [showFileList]="false" labelText="" uploadMode="instantly"
+                [uploadUrl]="uploadDLUrl" [(value)]="driversLicense" (onUploaded)="Uploaded('driversLicense')"
+                [allowedFileExtensions]="['.jpg', '.jpeg', '.gif', '.png', '.pdf']">
+            </dx-file-uploader>
+        </td>
+        <td *ngIf="!driversLicenseFile">
+            <dx-button text="Scan" (click)="openPopup('DL')">
+            </dx-button>
+        </td>
+        <td *ngIf="!driversLicenseFile">
+            <small>
+                <div *ngFor="let file of driversLicense">
+                    <div class="selected-item">
+                        <span style="color: olivedrab;">{{file.name}}</span>&nbsp;&nbsp;
+                    </div>
+                </div>
+                {{ driversLicenseUploaded ? 'Uploaded' : ''}}
+                {{ driversLicenseFile ? '' : 'Required'}}
+            </small>
+        </td>
+        <td *ngIf="driversLicenseFile">
+            <dx-button type="normal"><a [attr.href]="downloadDLUrl">Download</a></dx-button>
+        </td>
+        <td *ngIf="driversLicenseFile">
+            <dx-button text="Remove" [stylingMode]="'outlined'" type="danger" (click)="removePopup('DL')">
+            </dx-button>
+        </td>
+    </tr>
+    <tr>
+        <td>Vehicle Registration</td>
+        <td *ngIf="!vehicleRegistrationFile">
+            <dx-file-uploader [multiple]="false" [showFileList]="false" labelText="" uploadMode="instantly"
+                [uploadUrl]="uploadVRUrl" [(value)]="vehicleRegistration" (onUploaded)="Uploaded('vehicleRegistration')"
+                [allowedFileExtensions]="['.jpg', '.jpeg', '.gif', '.png', '.pdf']">
+            </dx-file-uploader>
+        </td>
+        <td *ngIf="!vehicleRegistrationFile">
+            <dx-button text="Scan" (click)="openPopup('VR')">
+            </dx-button>
+        </td>
+        <td *ngIf="!vehicleRegistrationFile">
+            <small>
+                <div *ngFor="let file of vehicleRegistration">
+                    <div class="selected-item">
+                        <span
+                            style="color: olivedrab;">{{file.name}}</span>&nbsp;&nbsp;{{ vehicleRegistrationFile ? 'Uploaded' : ''}}
+                    </div>
+                </div>
+                {{ vehicleRegistrationFile ? '' : 'Required'}}
+            </small>
+        </td>
+        <td *ngIf="vehicleRegistrationFile">
+            <dx-button type="normal"><a [attr.href]="downloadVRUrl">Download</a></dx-button>
+        </td>
+        <td *ngIf="vehicleRegistrationFile">
+            <dx-button text="Remove" [stylingMode]="'outlined'" type="danger" (click)="removePopup('VR')">
+            </dx-button>
+        </td>
+    </tr>
+    <tr>
+        <td>Vehicle Insurance</td>
+        <td *ngIf="!vehicleInsuranceFile">
+            <dx-file-uploader [multiple]="false" [showFileList]="false" labelText="" uploadMode="instantly"
+                [uploadUrl]="uploadVIUrl" [(value)]="vehicleInsurance" (onUploaded)="Uploaded('vehicleInsurance')"
+                [allowedFileExtensions]="['.jpg', '.jpeg', '.gif', '.png', '.pdf']">
+            </dx-file-uploader>
+        </td>
+        <td *ngIf="!vehicleInsuranceFile">
+            <dx-button text="Scan" (click)="openPopup('VI')">
+            </dx-button>
+        </td>
+
+        <td *ngIf="!vehicleInsuranceFile">
+            <small>
+                <div *ngFor="let file of vehicleInsurance">
+                    <div class="selected-item">
+                        <span
+                            style="color: olivedrab;">{{file.name}}</span>&nbsp;&nbsp;{{ vehicleInsuranceFile ? 'Uploaded' : ''}}
+                    </div>
+                </div>
+                {{ vehicleInsuranceFile ? '' : 'Required'}}
+            </small>
+        </td>
+
+        <td *ngIf="vehicleInsuranceFile">
+            <dx-button type="normal"><a [attr.href]="downloadVIUrl">Download</a></dx-button>
+        </td>
+        <td *ngIf="vehicleInsuranceFile">
+            <dx-button text="Remove" [stylingMode]="'outlined'" type="danger" (click)="removePopup('VI')">
+            </dx-button>
+        </td>
+    </tr>
+    <tr>
+        <td>Void Cheque</td>
+        <td *ngIf="!voidChequeFile">
+            <dx-file-uploader [multiple]="false" [showFileList]="false" labelText="" uploadMode="instantly"
+                [uploadUrl]="uploadVCUrl" [(value)]="voidCheque" (onUploaded)="Uploaded('voidCheque')"
+                [allowedFileExtensions]="['.jpg', '.jpeg', '.gif', '.png', '.pdf']">
+            </dx-file-uploader>
+        </td>
+        <td *ngIf="!voidChequeFile">
+            <dx-button text="Scan" (click)="openPopup('VC')">
+            </dx-button>
+        </td>
+
+        <td *ngIf="!voidChequeFile">
+            <small>
+                <div *ngFor="let file of voidCheque">
+                    <div class="selected-item">
+                        <span
+                            style="color: olivedrab;">{{file.name}}</span>&nbsp;&nbsp;{{ voidChequeFile ? 'Uploaded' : ''}}
+                    </div>
+                </div>
+                {{ voidChequeFile ? '' : 'Required'}}
+            </small>
+        </td>
+        <td *ngIf="voidChequeFile">
+            <dx-button type="normal"><a [attr.href]="downloadVCUrl">Download</a></dx-button>
+        </td>
+        <td *ngIf="voidChequeFile">
+            <dx-button text="Remove" [stylingMode]="'outlined'" type="danger" (click)="removePopup('VC')">
+            </dx-button>
+        </td>
+    </tr>
+
+    <tr *ngIf="backgroundCheckRequired">
+        <td>Background Check</td>
+        <td *ngIf="!backgroundCheckFile">
+            <dx-file-uploader [multiple]="false" [showFileList]="false" labelText="" uploadMode="instantly"
+                [uploadUrl]="uploadBCUrl" [(value)]="backgroundCheck" (onUploaded)="Uploaded('backgroundCheck')"
+                [allowedFileExtensions]="['.jpg', '.jpeg', '.gif', '.png', '.pdf']">
+            </dx-file-uploader>
+        </td>
+        <td *ngIf="!backgroundCheckFile">
+            <dx-button text="Scan" (click)="openPopup('BC')">
+            </dx-button>
+        </td>
+
+        <td *ngIf="!backgroundCheckFile">
+            <small>
+                <div *ngFor="let file of backgroundCheck">
+                    <div class="selected-item">
+                        <span
+                            style="color: olivedrab;">{{file.name}}</span>&nbsp;&nbsp;{{ backgroundCheckFile ? 'Uploaded' : ''}}
+                    </div>
+                </div>
+                {{ backgroundCheckFile ? '' : 'Required'}}
+            </small>
+        </td>
+
+        <td *ngIf="backgroundCheckFile">
+            <dx-button type="normal"><a [attr.href]="downloadBCUrl">Download</a></dx-button>
+        </td>
+        <td *ngIf="backgroundCheckFile">
+            <dx-button text="Remove" [stylingMode]="'outlined'" type="danger" (click)="removePopup('BC')">
+            </dx-button>
+        </td>
+    </tr>
+    <tr *ngIf="vehicleUseRequired">
+        <td>Vehicle Use Permission Letter</td>
+        <td *ngIf="!vehicleUseFile">
+            <dx-file-uploader [multiple]="false" [showFileList]="false" labelText="" uploadMode="instantly"
+                [uploadUrl]="uploadVUPLUrl" [(value)]="vehicleUse" (onUploaded)="Uploaded('vehicleUse')"
+                [allowedFileExtensions]="['.jpg', '.jpeg', '.gif', '.png', '.pdf']">
+            </dx-file-uploader>
+        </td>
+        <td *ngIf="!vehicleUseFile">
+            <dx-button text="Scan" (click)="openPopup('VU')">
+            </dx-button>
+        </td>
+
+        <td *ngIf="!vehicleUseFile">
+            <small>
+                <div *ngFor="let file of vehicleUse">
+                    <div class="selected-item">
+                        <span
+                            style="color: olivedrab;">{{file.name}}</span>&nbsp;&nbsp;{{ vehicleUseFile ? 'Uploaded' : ''}}
+                    </div>
+                </div>
+                {{ vehicleUseFile ? '' : 'Required'}}
+            </small>
+        </td>
+
+        <td *ngIf="vehicleUseFile">
+            <dx-button type="normal"><a [attr.href]="downloadVUPLUrl">Download</a></dx-button>
+        </td>
+
+        <td *ngIf="vehicleUseFile">
+            <dx-button text="Remove" [stylingMode]="'outlined'" type="danger" (click)="removePopup('VU')">
+            </dx-button>
+        </td>
+    </tr>
+    <tr *ngIf="policeReportRequired">
+        <td>Drivers Abstract</td>
+        <td *ngIf="!policeReportFile">
+            <dx-file-uploader [multiple]="false" [showFileList]="false" labelText="" uploadMode="instantly"
+                [uploadUrl]="uploadDAUrl" [(value)]="policeReport" (onUploaded)="Uploaded('policeReport')"
+                [allowedFileExtensions]="['.jpg', '.jpeg', '.gif', '.png', '.pdf']">
+            </dx-file-uploader>
+        </td>
+        <td *ngIf="!policeReportFile">
+            <dx-button text="Scan" (click)="openPopup('DA')">
+            </dx-button>
+        </td>
+
+        <td *ngIf="!policeReportFile">
+            <small>
+                <div *ngFor="let file of policeReport">
+                    <div class="selected-item">
+                        <span
+                            style="color: olivedrab;">{{file.name}}</span>&nbsp;&nbsp;{{ policeReportFile ? 'Uploaded' : ''}}
+                    </div>
+                </div>
+                {{ policeReportFile ? '' : 'Required'}}
+            </small>
+        </td>
+
+        <td *ngIf="policeReportFile">
+            <dx-button type="normal"><a [attr.href]="downloadDAUrl">Download</a></dx-button>
+        </td>
+        <td *ngIf="policeReportFile">
+            <dx-button text="Remove" [stylingMode]="'outlined'" type="danger" (click)="removePopup('DA')">
+            </dx-button>
+        </td>
+    </tr>
+    <tr *ngIf="leaseDocumentsRequired">
+        <td>Lease Documents</td>
+        <td *ngIf="!leaseDocumentsFile">
+            <dx-file-uploader [multiple]="false" [showFileList]="false" labelText="" uploadMode="instantly"
+                [uploadUrl]="uploadVLUrl" [(value)]="leaseDocuments" (onUploaded)="Uploaded('leaseDocuments')"
+                [allowedFileExtensions]="['.jpg', '.jpeg', '.gif', '.png', '.pdf']">
+            </dx-file-uploader>
+        </td>
+        <td *ngIf="!leaseDocumentsFile">
+            <dx-button text="Scan" (click)="openPopup('LD')">
+            </dx-button>
+        </td>
+
+        <td *ngIf="!leaseDocumentsFile">
+            <small>
+                <div *ngFor="let file of leaseDocuments">
+                    <div class="selected-item">
+                        <span
+                            style="color: olivedrab;">{{file.name}}</span>&nbsp;&nbsp;{{ leaseDocumentsFile ? 'Uploaded' : ''}}
+                    </div>
+                </div>
+                {{ leaseDocumentsFile ? '' : 'Required'}}
+            </small>
+        </td>
+
+        <td *ngIf="leaseDocumentsFile">
+            <dx-button type="normal"><a [attr.href]="downloadVLUrl">Download</a></dx-button>
+        </td>
+
+        <td *ngIf="leaseDocumentsFile">
+            <dx-button text="Remove" [stylingMode]="'outlined'" type="danger" (click)="removePopup('LD')">
+            </dx-button>
+        </td>
+    </tr>
+    <tr>
+        <td>WSIB Document</td>
+        <td *ngIf="!wsibDocumentFile">
+            <dx-file-uploader [multiple]="false" [showFileList]="false" labelText="" uploadMode="instantly"
+                [uploadUrl]="uploadWSIBUrl" [(value)]="wsibDocument" (onUploaded)="Uploaded('wsibDocument')"
+                [allowedFileExtensions]="['.jpg', '.jpeg', '.gif', '.png', '.pdf']">
+            </dx-file-uploader>
+        </td>
+        <td *ngIf="!wsibDocumentFile">
+            <dx-button text="Scan" (click)="openPopup('WS')">
+            </dx-button>
+        </td>
+
+        <td *ngIf="!wsibDocumentFile">
+            <small>
+                <div *ngFor="let file of wsibDocument">
+                    <div class="selected-item">
+                        <span
+                            style="color: rgb(148, 170, 105);">{{file.name}}</span>&nbsp;&nbsp;{{ wsibDocumentFile ? 'Uploaded' : ''}}
+                    </div>
+                </div>
+                {{ wsibDocumentFile ? '' : 'Required'}}
+            </small>
+        </td>
+        <td *ngIf="wsibDocumentFile">
+            <dx-button type="normal"><a [attr.href]="downloadWSUrl">Download</a></dx-button>
+        </td>
+        <td *ngIf="wsibDocumentFile">
+            <dx-button text="Remove" [stylingMode]="'outlined'" type="danger" (click)="removePopup('WS')">
+            </dx-button>
+        </td>
+    </tr>
+    <tr>
+        <td>Independant Contractor Photo</td>
+        <td *ngIf="!profilePhotoFile">
+            <dx-file-uploader [multiple]="false" [showFileList]="false" labelText="" uploadMode="instantly"
+                [uploadUrl]="uploadPhotoUrl" [(value)]="profilePhoto" (onUploaded)="Uploaded('profilePhoto')"
+                [allowedFileExtensions]="['.jpg', '.jpeg', '.gif', '.png', '.pdf']">
+            </dx-file-uploader>
+        </td>
+        <td *ngIf="!profilePhotoFile">
+            <dx-button text="Use Camera" (click)="startVideo()">
+            </dx-button>
+        </td>
+
+        <td *ngIf="!profilePhotoFile">
+            <small>
+                <div *ngFor="let file of profilePhoto">
+                    <div class="selected-item">
+                        <span
+                            style="color: rgb(148, 170, 105);">{{file.name}}</span>&nbsp;&nbsp;{{ profilePhotoFile ? 'Uploaded' : ''}}
+                    </div>
+                </div>
+                {{ profilePhotoFile ? '' : 'Required'}}
+            </small>
+        </td>
+        <td *ngIf="profilePhotoFile">
+            <dx-button type="normal"><a [attr.href]="downloadPhotoUrl">Download</a></dx-button>
+        </td>
+        <td *ngIf="profilePhotoFile">
+            <dx-button text="Remove" [stylingMode]="'outlined'" type="danger" (click)="removePopup('PP')">
+            </dx-button>
+        </td>
+    </tr>
+    <tr>
+        <td>Vendor Broker Application</td>
+        <td *ngIf="!vendorBrokerFile">
+            <dx-file-uploader [multiple]="false" [showFileList]="false" labelText="" uploadMode="instantly"
+                [uploadUrl]="uploadVBUrl" [(value)]="vendorBroker" (onUploaded)="Uploaded('vendorBroker')"
+                [allowedFileExtensions]="['.jpg', '.jpeg', '.gif', '.png', '.pdf']">
+            </dx-file-uploader>
+        </td>
+        <td *ngIf="!vendorBrokerFile">
+            <dx-button text="Scan" (click)="openPopup('VB')">
+            </dx-button>
+        </td>
+
+        <td *ngIf="!vendorBrokerFile">
+            <small>
+                <div *ngFor="let file of vendorBroker">
+                    <div class="selected-item">
+                        <span
+                            style="color: olivedrab;">{{file.name}}</span>&nbsp;&nbsp;{{ vendorBrokerFile ? 'Uploaded' : ''}}
+                    </div>
+                </div>
+                {{ vehicleInsuranceFile ? '' : 'Required'}}
+            </small>
+        </td>
+
+        <td *ngIf="vendorBrokerFile">
+            <dx-button type="normal"><a [attr.href]="downloadVBUrl">Download</a></dx-button>
+        </td>
+        <td *ngIf="vendorBrokerFile">
+            <dx-button text="Remove" [stylingMode]="'outlined'" type="danger" (click)="removePopup('VB')">
+            </dx-button>
+        </td>
+    </tr>
+    <tr>
+        <td>Independant Contractor Agreement</td>
+        <td *ngIf="!icAgreementFile">
+            <dx-file-uploader [multiple]="false" [showFileList]="false" labelText="" uploadMode="instantly"
+                [uploadUrl]="uploadICUrl" [(value)]="icAgreement" (onUploaded)="Uploaded('icAgreement')"
+                [allowedFileExtensions]="['.jpg', '.jpeg', '.gif', '.png', '.pdf']">
+            </dx-file-uploader>
+        </td>
+        <td *ngIf="!icAgreementFile">
+            <dx-button text="Scan" (click)="openPopup('IC')">
+            </dx-button>
+        </td>
+        <td *ngIf="!icAgreementFile">
+            <small>
+                <div *ngFor="let file of icAgreement">
+                    <div class="selected-item">
+                        <span
+                            style="color: olivedrab;">{{file.name}}</span>&nbsp;&nbsp;{{ icAgreementFile ? 'Uploaded' : ''}}
+                    </div>
+                </div>
+                {{ icAgreementFile ? '' : 'Required'}}
+            </small>
+        </td>
+
+        <td *ngIf="icAgreementFile">
+            <dx-button type="normal"><a [attr.href]="downloadICUrl">Download</a></dx-button>
+        </td>
+
+        <td *ngIf="icAgreementFile">
+            <dx-button text="Remove" [stylingMode]="'outlined'" type="danger" (click)="removePopup('IC')">
+            </dx-button>
+        </td>
+    </tr>
+</table>
+
+
+
+<div id="app2" *ngIf="showVideo">
+    <div>
+        <video #video id="video" width="640" height="480"></video>
+    </div>
+    <div><button id="snap" (click)="capture()">Snap Photo</button></div>
+    <canvas #canvas id="canvas" width="640" height="480"></canvas>
+    <ul>
+        <li *ngFor="let c of captures; let i = index">
+            <img src="{{ c }}" height="100" />
+            <dx-button text="Upload" (click)="uploadImage(i)">
+            </dx-button>
+        </li>
+    </ul>
+</div>
+<div class="text-align-center">
+    <dx-button id="button" text="PREVIOUS" class="standard-button" type="default" [useSubmitBehavior]="false" icon="back"
+    (click)="onPrevious($event)">
+    </dx-button>
+    <dx-button text="Review Driver" class="standard-button-primary" type="success" icon="save" (click)="onSubmitForm()">
+    </dx-button>
+</div>
+
+<dx-popup [width]="500" [height]="200" [showTitle]="true" title="Scan Document" [closeOnOutsideClick]="true"
+    (onHiding)="removeUser()" [(visible)]="popupVisible">
+    <div *dxTemplate="let data of 'content'">
+        <h1>{{popupDocumentName}}</h1>
+    </div>
+</dx-popup>
+
+
+<dx-popup [width]="500" [height]="200" [showTitle]="true" title="Remove Document" [closeOnOutsideClick]="true"
+    (onHiding)="checkFiles()" [(visible)]="removePopupVisible">
+    <div *dxTemplate="let data of 'content'">
+        <h1>{{popupDocumentName}}</h1>
+    </div>
+</dx-popup>
+
+
+<div class="container1">
+    <!--
+    <br/><br/>
+    <dx-button
+        id="button"
+        text="Submit"
+        icon="floppy"
+        type="success"
+        [useSubmitBehavior]="true"
+        (onClick)="onSubmitForm()"
+    ></dx-button>    
+
+    <dx-button
+        id="button"
+        text="Redo Questionnaire"
+        icon="revert"
+        type="danger"
+        [useSubmitBehavior]="true"
+        (onClick)="onRedo()"
+    ></dx-button>    
+-->

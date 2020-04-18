@@ -1,0 +1,29 @@
+<div class="right" *ngIf="tutorials">
+
+    <h3>Tutorials</h3>
+    <ul>
+      <li (click)="delTutorial(i)" *ngFor="let tutorial of tutorials | async; let i = index">
+        <a [href]="tutorial.url" target="_blank">{{ tutorial.name }}</a>
+      </li>
+    </ul>
+  
+  </div>
+
+  <div class="right" *ngIf="tutorials">
+
+    <h3>Tutorials</h3>
+    <ul>
+      <li (click)="delTutorial(i)" *ngFor="let navigation of navigations | async; let i = index">
+        <a [href]="navigation.Path" target="_blank">{{ navigation.Content }}</a>
+      </li>
+    </ul>
+  
+  </div>
+
+  <div class="left">
+
+    <input type="text" placeholder="name" #name>
+    <input type="text" placeholder="url" #url>
+  
+    <button (click)="addTutorial(name.value,url.value)">Add a Tutorial</button>
+  </div>

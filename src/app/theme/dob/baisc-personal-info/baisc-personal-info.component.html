@@ -1,0 +1,79 @@
+<div class="form-container">
+  <form action="your-action" (submit)="onFormSubmit($event)">
+    <dx-form id="driver-form"
+        [formData]="driverTemp"      
+        [minColWidth]="300"
+        [readOnly]="false"
+        [showColonAfterLabel]="true"
+        [showValidationSummary]="false"
+        validationGroup="driverTempData"
+        [items]="formItems"                 
+        #driverInformationForm>           
+        <dxi-item itemType="group" caption="Basic Profile" style="font-weight: 500;">
+            <dxi-item dataField="FirstName">
+                    <dxi-validation-rule 
+                    type="required"
+                    message="First Name is required">
+                </dxi-validation-rule>                               
+            </dxi-item>
+            <dxi-item dataField="MiddleName">                              
+            </dxi-item>
+            <dxi-item dataField="LastName">
+                    <dxi-validation-rule 
+                    type="required"
+                    message="Last Name is required">
+                </dxi-validation-rule>                              
+            </dxi-item> 
+            <dxi-item
+            dataField="DOB"
+            editorType="dxDateBox"
+            [editorOptions]="{ 
+                invalidDateMessage: 'The date must have the following format: MM/dd/yyyy' }">
+            <dxo-label
+                text="Date of Birth">
+            </dxo-label>
+            <dxi-validation-rule 
+                type="required"
+                message="Date of Birth is required">
+            </dxi-validation-rule>
+            <dxi-validation-rule type="custom" [reevaluate]="true" [validationCallback]="birthDateCheck" message="Age should be 18 and above">
+            </dxi-validation-rule>             
+            </dxi-item>
+            <dxi-item dataField="Email">
+            <dxi-validation-rule 
+                type="email"
+                message="Email is invalid">
+            </dxi-validation-rule>            
+            </dxi-item>
+            <dxi-item dataField="CellPhone" [editorOptions]="cellPhoneEditorOptions"> 
+              <dxo-label text="Cellular Phone"></dxo-label>          
+              <dxi-validation-rule 
+              type="pattern"
+              [pattern]="phonePattern"
+              message="The phone must have a correct format">
+          </dxi-validation-rule>
+            </dxi-item>
+        </dxi-item>                
+        <dxi-item >
+          <div *dxTemplate class="text-align-center margin-top-large">
+            <dx-button id="button" text="CLEAR" 
+                        class="standard-button"
+                        icon="clear"
+                        type="danger" [useSubmitBehavior]="false" (click)="onResetForm($event)">
+            </dx-button>
+            <dx-button id="button" text="PREVIOUS" class="standard-button" type="default" [useSubmitBehavior]="false" icon="back"
+                    (click)="onPrevious($event)">
+                </dx-button>
+            <dx-button id="button" text="NEXT" class="standard-button standard-button-primary" icon="save" type="success" [useSubmitBehavior]="true">
+            </dx-button>                                                   
+          </div>
+      </dxi-item>  
+      <dxi-item>
+        <div #errorMessage class="error-msg">         
+          <!-- <dxo-label font="{color:red!important}" [text]="showErrorMessage"  editorOptions="{id='errorMessage', font-color:red!important}"></dxo-label> -->
+        </div>        
+        <!-- <dxo-font color="black"></dxo-font> -->
+      </dxi-item>       
+    </dx-form>
+  </form>
+</div>

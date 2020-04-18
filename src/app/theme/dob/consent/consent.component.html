@@ -1,0 +1,44 @@
+<h4>Consent for Background Check</h4>
+<div *ngIf="0  == (cap | async)">
+<dx-scroll-view #scrollView
+  id="scrollview"
+  [scrollByContent]="false"
+  [scrollByThumb]="false"
+  [showScrollbar]="true"
+  [bounceEnabled]="false"
+>
+<div [innerHTML]="content"></div>
+</dx-scroll-view>
+<h5>Please provide your signature below</h5>
+<div class="container1">
+<signature-pad [options]="signaturePadOptions" (onBeginEvent)="drawStart()" (onEndEvent)="drawComplete()"></signature-pad>
+</div>
+<small></small>
+<br/>
+<dx-button
+  id="button"
+  text="Reset"
+  icon="revert"
+  type="danger"
+  [useSubmitBehavior]="true"
+  (onClick)="clearSignature()"
+></dx-button>
+
+<dx-button
+  id="button"
+  text="Submit"
+  icon="floppy"
+  type="success"
+  [useSubmitBehavior]="true"
+  (onClick)="submitSignature()"
+></dx-button>
+</div>
+<div *ngIf="10  == (cap | async)">
+<h6>Welcome aboard! We have initiated a background check. You can proceed to training modules.</h6>
+<dx-button
+  id="button"
+  text="Begin Training"
+  type="success"
+  (onClick)="changeRoute()"
+></dx-button>
+</div>

@@ -1,0 +1,185 @@
+<div>
+    <h1>Test Results</h1>
+</div>
+<div style="justify-content: center">
+<span style="font-weight: 600; width: 150px;">Score:</span>&nbsp;&nbsp;{{quizMarks}}/{{questions.length}}<br/>
+<span style="font-weight: 600; width: 150px;">Percentage:</span>&nbsp;&nbsp;{{ (quizMarks/questions.length) * 100}}%<br/>
+<span style="font-weight: 600; width: 150px;">Passing Percentage:</span>&nbsp;&nbsp;60%<br/>
+</div>
+<dx-button
+    type="success"
+    icon="floppy"
+    text="See More"
+    (click)="viewAnswers = !viewAnswers"
+></dx-button>
+<dx-button
+    [visible]="!viewAnswers"
+    type="success"
+    icon="floppy"
+    text="Continue"
+    (click)="continue()"
+></dx-button>
+<div *ngIf="viewAnswers">
+<form class="example-form">
+    <ng-container *ngFor="let qn of questions; let i = index">
+        <!--If question type is MCQ-->
+        <div *ngIf="qn.Type == 'MCQ'">
+            <div [ngStyle]="{'background-color': '#dc3545', 'display': stylesDisplay[i], color: 'white'}">&nbsp;Please
+                answer the following question.</div>
+            <h4>{{i+1}}. {{qn.Qn}}</h4><br />
+            <div *ngIf="qn.QnImage!=null">
+                &nbsp;&nbsp;&nbsp; <img class="center" alt="__dirname" [src]="'../../../../assets/app/media/img/quiz/'+qn.QnImage"><br /><br />
+            </div>
+            <dx-list [dataSource]="qn.Options" [height]="auto" [selectionMode]="selectionModeValue" [selectAllMode]="selectAllModeVlaue"
+                [showSelectionControls]="false" itemTemplate="listItem">
+                <div *dxTemplate="let item of 'listItem', let k = index">
+                        <span class="m-menu__link-icon" style="width: 55px;">
+                                <img *ngIf="givenAnswers[i] != k" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAC9wAAAvcBLRSNOAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAE8SURBVGiB7Zk9TsNAEIXfRBRIKAX3oAKlS9JDhzgBDS0UMS0SJYkU0qbhAgiQ+DF1ShA0HIQCIdENBRTI8qzJyptxpPeVOzP2+7wurDVACCGeSFXD2WxnTwSHADYArKePBAB4h+BNIJNB9/4q1BgUGM62xxA5qjfbnKiOsn6eWWVT4PfJX6ZJNR+iujvo5zdltZY59PPaNAINZDEFAGwmyBKJbFmVlcDUWnHhoHNRS5wqps/7xaW21RvagaWAAt5QwBsKeNMcAY0ba45A5XdxOc0RiIQC3lDAGwp4QwFvKOANBbyhgDdLLxA6mftE4XSu5MRsUXxYhdAOvCYIEom+WJWAgA5TRIlBxc5iCmS9/FZFT9NE+j+icnLcfXww61UX+POLqQNgtc5wAb4geIK2zrPe3fWC7kkIIRF8AzoMNkt1ZeyPAAAAAElFTkSuQmCC" width="35px">
+                                <img *ngIf="givenAnswers[i] == k" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJuSURBVGhD7Zm/axNhGMfzH+nm6tj3qlahuji6OYmO6qAI2kvBRYPQoXQVEQfBCqHSSwdRKeJih67GHyBWUcj2mkeeK9e7zzXPXXgvFe4L3yU5vp/PQ9Il7bRp06bN0c5y4s7GiXsVD6Lf3UHkm6iwhLm8NX9GNeolHrh7BGi27o7qVEu8GS3w4Cw6d1q17JGPkMdm0MRtqJY9TX7nJzZxv1TLHhr6OfraSImtWvbQCMFClNiqZQ+NECxEia1a9tAIwUKU2KplD40QLESJrVr20AjBpumT14/8cG+38DqxVcseGsmDpulK/7Y/3z3mr60tFo4gtmrZQyNZyDRN5dPmjyC2atlDI1mJus3LSy90j/v+h8f7zxBbteyhkayI9PufT3732/vC62Utk3/2ZuXAc8RWLXtoJAsR+btPL/tLD076j8O3B96jWuWlxFYte2gkBaTyqcikI6rIS4mtWvbQSAp4vr1WECo7oqq8lNiqZQ+NpIC90Rffe3mzICZH7Azf7T9XR15KbNWyh0aykElH1JWXElu17KGRPKjsiIv3TxRes8pLia1a9tAIwcqOyLaKvJTYqmUPjRBMetgRVeWlxFYte2iEYGl/jD77K6sLhQN66zfw+cNKbNWyh0YIlm3+iN6L6vJSYquWPTRCsHzliKur5/zD9ev4vqXEVi17aIRgIUps1bKHRggWosRWLXtohGAhSmzVsodGCBaixFYte2iEYCFKbNWy5///aTFxGzg2i9b5cVd+0saxWXQzmletapF/LuBgg40H7pbq1MtS4k79+zqNv4cECNIxa/w32F/amotUo02bNm2OZDqdv+kscbeZCrHzAAAAAElFTkSuQmCC" width="35px">
+                        </span>                          
+                    <b>{{item}}</b>
+                        <span class="m-menu__link-icon" style="width: 55px;">
+                                <img *ngIf="actualAnswers[i] == k" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAMySURBVGhD7Zm9axRBGMYPvwo7vyr1rxCDVukkuBdnDu5Qk0ZBrW3UYHNdzkJQTCDG/AUx7Kwx0SpgfWBjVKz9akxirYKc77N5D8LeO3ezu7Nrsw/8YHO7877PfOzM7KRWqVKl/Go9b+2fDBvngkjdr0cqDIz+WDf6J13/iaFr+u1DfI+ewbPtdnsfF/9/UpE6TeYekLnv9Uj3UmH0N5SdCBunOFx5qr+sH6fWfEat+Vs0lwLEIBYQk8MXKzI+RexIZvJAvbiF2JzGv2icH6IkS1Jyn1COp2cWbx3ktH5E3XuYuvm1lLAQjH6FnJw+n+KWL9N8H6NXvfREGcPGBoYT28imIGxMS4HLRV1mO+k0sdw8QUNnWw5aHpidtNHH2Ja70H1SwKK4tjEl/g6oIefZlpuwwlKh3IuUK3e7N3rdv496Dz/dFu/DS7AWnGR7o4UlXgpUBH3zb3uPY4ZUosP2hgubrHifIgTxTdI8wN/XN6YHnqUh/cVpA0jmzycLF4HNPH6XngdUiTG2aRd1FW2J5QC+yGI+xugZtmkXPWTEwp7IbB4YvcI27aJuog8PobAHcpmPUe/Zpl1US/qSkgoPMmzuTpLffDwTbbNNu1znf0x3rgZ8mAfwxjbtcqkAzLsa8WUeOFVg1BDCHO1q6E73pjfzwGkI4UWRCu/FpVV9m48xepNt2kUVCMXCCWyVgPFCzAOnaTTFQmarRCHmiYuRusc27cKhk1TYhlSJvfgyHxM2zrJNu+LNXKS+igEs2Crh07zzZg6iYdSRggwjWQlc412Qns2GmmV7o4XjPpf1IEn/5fVu3uhfqT5oIKrAghhsBP1ZSLqXHTXHttyFD2ksHHLAMlE/Liw3j7KtdJo0+qoctDwC02ixnWyqG7UoBS4Fo5+wjezC0SIFWhUTFAnlxD9O2EY+4aCVxuK6mKgA6N1b83a42xcOWss57FJz42/GD3Ba/wrCxhWqyJacPDuIGby41OQ0xYqn2Pksi90AtEih1YP14AiHL0+8Yneo9T6L5oawW0bNpl5hixA2WWRojFpzhlghNsncDnpot5fo2uh3uIctMXaVzhuzSpUqDVGt9g9nUxYfKM5I0wAAAABJRU5ErkJggg==" width="35px">
+                        </span>
+                        <span class="m-menu__link-icon" style="width: 55px;">
+                                <img *ngIf="givenAnswers[i] == k && actualAnswers[i] != k" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAM2SURBVGhD7ZnLbtNAFIYjbgt23FbAC7BCSmYIUqWIcalYsCTitoMtrItgwQKJdE0rlcsjoCJVFCQeAygPAJQNAVTiJCqgZjhneiyF5Iztie1JkfxLnxTLM+f8x554xuNKqVKlsks3m3t7s7LeVfIusNINxAfgRxjI3wj+7gZy3ZyDNthW36/soe7TU3+udhIMLoRKfAGD2oUwEBvYt9eQJyicP3Ua1aOhkk+BX5w5FzAGFLKMMSl8sYIrd62rxHfOTEbaGJvS5C/dPHUArtQzJnGuQBGPdbW6n9LmI32xehDMv+YSFgEU8QpzUvpsoivvzXwEFLGay53wMWxs4HAiG5MJAlznAvskDGqXyY6bOhdOH4NJ5xsX1DPtn4E4QrbSC28fE2xKiCWylU5mhnWZpM7Xdf/2Tf4cg2kLfbhzHOilp+rHyV6y4I+7wAViASN/3qxpvb2ttx7c49sMgW2wLfZxLKJF9uKFiywYPhtckDEi85ESiojMR3IpAgr4lGoB2A/EWS4AR//WjX8MGVmKGDVvBMcYY7StjZ6qSrJpl1kSM51t2IwNF5GmTSpmxR2yaReM/xds5xjiDOZm3iCek027oOH6eMdkWKMDOB4M6IA0sXlAyfdk0y56e+IDJMAWMaws5hGYWMmmXU7PfwZTBF75UcGdyGQeQG9k0658ChgZNigoyksB//0Qwj8K2zkB1jzeidHhlKUIJd6RTbuggBW2cwyseTIad46LFU+ax+hunsiUmCebdpkNKq4zg/elRFATZNMuWsx95gKMsRsXcyho3OKCsERFJJiPiIpwMY+ESjwke8nC7T6n+QCMFPxCs+X0QoOCRd0yF2w6iEWylV74Io0TBx/QI0p+3ZyrHyZbbgrPyatsUI/A8GmSnckEf54nXGAvKPmIbEyuna1FscomKBDMiR9OyEY2mc1dJda4REUAw+Zlbpu7kXCj1c9ml1jUjcY+Spu/QnXmCiRqjyfOTLuj5CVKU6zMIzYQS06TnQWcpPCqb87MHKLw/kQzdgv4yJmLA/vg8sB5hi1CuMjCTSfct8E1O7544Hc0vEPIzjc18ZbOzeOqMvXCrFSpUjGqVP4C/xYkeiCFjZAAAAAASUVORK5CYII=" width="35px">
+                        </span>  
+                </div>
+                <dxi-validation-rule type="required" message="Please answer all questions"></dxi-validation-rule>
+            </dx-list>
+        </div>
+
+        <!---If question type is SORT-->
+        <div *ngIf="qn.Type == 'SORT'">
+            <div [ngStyle]="{'background-color': '#dc3545', 'display': stylesDisplay[i], color: 'white'}">&nbsp;Make
+                sure to edit the list atleast once.</div>
+            <h4>{{i+1}}. {{qn.Qn}}</h4><br />
+            <div *ngIf="qn.QnImage!=null">
+                &nbsp;&nbsp;&nbsp; <img class="center" alt="__dirname" [src]="'../../../../assets/app/media/img/quiz/'+qn.QnImage"><br /><br />
+            </div>
+            <table width="100%">
+                <tr width="100%">
+                    <th>Question</th>
+                    <th>Given Answer</th>
+                    <th>Actual Answer</th>
+                </tr>
+                <tr *ngFor="let item of qn.SubQuestions; let j = index">
+                    <td>{{item}}</td>
+                    <td [style.color]="qn.SubQuestions[givenAnswers[i][j]-1] === actualAnswers[i][j] ? 'green' : 'red'">{{qn.SubQuestions[givenAnswers[i][j]-1]}}</td>
+                    <td>{{actualAnswers[i][j]}}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div *ngIf="qn.Type == 'FB'">
+            <div [ngStyle]="{'background-color': '#dc3545', 'display': stylesDisplay[i], color: 'white'}">&nbsp;Please
+                make sure to fill in all the answers below.</div>
+            <h4>{{i+1}}. {{qn.Qn}}</h4><br />
+            <div *ngIf="qn.QnImage!=null">
+                &nbsp;&nbsp;&nbsp; <img class="center" alt="__dirname" [src]="'../../../../assets/app/media/img/quiz/'+qn.QnImage"><br /><br />
+            </div>
+            <table width="100%">
+                <tr width="100%">
+                    <th>Question</th>
+                    <th>Given Answer</th>
+                    <th>Actual Answer</th>
+                </tr>
+                <tr *ngFor="let item of qn.SubQuestions; let j = index">
+                    <td>{{item}}</td>
+                    <td [style.color]="givenAnswers[i][j] === actualAnswers[i][j] ? 'green' : 'red'">{{givenAnswers[i][j]}}</td>
+                    <td>{{actualAnswers[i][j]}}</td>
+                </tr>
+            </table>
+        </div>
+
+
+        <div *ngIf="qn.Type === 'MATCH'">
+            <div [ngStyle]="{'background-color': '#dc3545', 'display': stylesDisplay[i], color: 'white'}">&nbsp;Match
+                all questions with appropriate answers.</div>
+            <h4>{{i+1}}. {{qn.Qn}}</h4><br />
+            <div *ngIf="qn.QnImage!=null">
+                &nbsp;&nbsp;&nbsp; <img class="center" alt="__dirname" [src]="'../../../../assets/app/media/img/quiz/'+qn.QnImage"><br /><br />
+            </div>
+            <div style="width: 100%; height: 250px; padding-left: 20px;">
+            <!--<table width="100%">
+                <ng-container *ngFor="let item of qn.SubQuestions; let j = index;" style="width: 100%">-->
+                    <table width="100%">
+                        <tr width="100%">
+                            <th>Question</th>
+                            <th>Given Answer</th>
+                            <th>Actual Answer</th>
+                        </tr>
+                        <tr *ngFor="let item of qn.SubQuestions; let j = index">
+                            <td>{{item}}</td>
+                            <td [style.color]="givenAnswers[i][j] === actualAnswers[i][j] ? 'green' : 'red'">{{givenAnswers[i][j]}}</td>
+                            <td>{{actualAnswers[i][j]}}</td>
+                        </tr>
+                    </table>
+                    <!--<tr>
+                        <td width="30%">{{j+1}}. {{item}}</td>
+                        <td width="30%"[style.color]="givenAnswers[i][j] === actualAnswers[i][j] ? 'green' : 'red'">{{qn.Options[givenAnswers[i][j] - 1]}}</td>
+                        <td>{{qn.Options[actualAnswers[i][j] - 1]}}</td>
+                    </tr>-->
+            <!--    </ng-container>
+            </table>-->
+            </div>
+        </div>
+
+
+        <div *ngIf="qn.Type === 'MMCQ'">
+            <div [ngStyle]="{'background-color': '#dc3545', 'display': stylesDisplay[i], color: 'white'}">&nbsp;Make sure you have selected answers for all questions below.</div>
+            <h4>{{i+1}}. {{qn.Qn}}</h4><br />
+            <div *ngIf="qn.QnImage!=null">
+                &nbsp;&nbsp;&nbsp; <img class="center" alt="__dirname" [src]="'../../../../assets/app/media/img/quiz/'+qn.QnImage"><br /><br />
+            </div>
+            <div class="form" style="padding-left: 20px;">
+                <div *ngFor="let item of qn.SubQuestions; let j = index">
+                    <div>{{item}}</div><br />
+
+                    <!-- Custom Change for two correct answers for question 9.1-->
+                    <div *ngIf="j === 0">
+                        <div style="padding-left: 25px;">
+                            <dx-radio-group [value]="givenAnswers[i][j]" [items]="qn.Options" layout="horizontal" [disabled]="true">
+                            </dx-radio-group>
+                        <span class="m-menu__link-icon" *ngIf="actualAnswers[i][j] === givenAnswers[i][j] || givenAnswers[i][j] === 'DVP'" style="width: 55px;">
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAMySURBVGhD7Zm9axRBGMYPvwo7vyr1rxCDVukkuBdnDu5Qk0ZBrW3UYHNdzkJQTCDG/AUx7Kwx0SpgfWBjVKz9akxirYKc77N5D8LeO3ezu7Nrsw/8YHO7877PfOzM7KRWqVKl/Go9b+2fDBvngkjdr0cqDIz+WDf6J13/iaFr+u1DfI+ewbPtdnsfF/9/UpE6TeYekLnv9Uj3UmH0N5SdCBunOFx5qr+sH6fWfEat+Vs0lwLEIBYQk8MXKzI+RexIZvJAvbiF2JzGv2icH6IkS1Jyn1COp2cWbx3ktH5E3XuYuvm1lLAQjH6FnJw+n+KWL9N8H6NXvfREGcPGBoYT28imIGxMS4HLRV1mO+k0sdw8QUNnWw5aHpidtNHH2Ja70H1SwKK4tjEl/g6oIefZlpuwwlKh3IuUK3e7N3rdv496Dz/dFu/DS7AWnGR7o4UlXgpUBH3zb3uPY4ZUosP2hgubrHifIgTxTdI8wN/XN6YHnqUh/cVpA0jmzycLF4HNPH6XngdUiTG2aRd1FW2J5QC+yGI+xugZtmkXPWTEwp7IbB4YvcI27aJuog8PobAHcpmPUe/Zpl1US/qSkgoPMmzuTpLffDwTbbNNu1znf0x3rgZ8mAfwxjbtcqkAzLsa8WUeOFVg1BDCHO1q6E73pjfzwGkI4UWRCu/FpVV9m48xepNt2kUVCMXCCWyVgPFCzAOnaTTFQmarRCHmiYuRusc27cKhk1TYhlSJvfgyHxM2zrJNu+LNXKS+igEs2Crh07zzZg6iYdSRggwjWQlc412Qns2GmmV7o4XjPpf1IEn/5fVu3uhfqT5oIKrAghhsBP1ZSLqXHTXHttyFD2ksHHLAMlE/Liw3j7KtdJo0+qoctDwC02ixnWyqG7UoBS4Fo5+wjezC0SIFWhUTFAnlxD9O2EY+4aCVxuK6mKgA6N1b83a42xcOWss57FJz42/GD3Ba/wrCxhWqyJacPDuIGby41OQ0xYqn2Pksi90AtEih1YP14AiHL0+8Yneo9T6L5oawW0bNpl5hixA2WWRojFpzhlghNsncDnpot5fo2uh3uIctMXaVzhuzSpUqDVGt9g9nUxYfKM5I0wAAAABJRU5ErkJggg==" width="35px">
+                        </span>
+                        <span class="m-menu__link-icon" *ngIf="actualAnswers[i][j] !== givenAnswers[i][j] && givenAnswers[i][j] !== 'DVP'" style="width: 55px;">
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAM2SURBVGhD7ZnLbtNAFIYjbgt23FbAC7BCSmYIUqWIcalYsCTitoMtrItgwQKJdE0rlcsjoCJVFCQeAygPAJQNAVTiJCqgZjhneiyF5Iztie1JkfxLnxTLM+f8x554xuNKqVKlsks3m3t7s7LeVfIusNINxAfgRxjI3wj+7gZy3ZyDNthW36/soe7TU3+udhIMLoRKfAGD2oUwEBvYt9eQJyicP3Ua1aOhkk+BX5w5FzAGFLKMMSl8sYIrd62rxHfOTEbaGJvS5C/dPHUArtQzJnGuQBGPdbW6n9LmI32xehDMv+YSFgEU8QpzUvpsoivvzXwEFLGay53wMWxs4HAiG5MJAlznAvskDGqXyY6bOhdOH4NJ5xsX1DPtn4E4QrbSC28fE2xKiCWylU5mhnWZpM7Xdf/2Tf4cg2kLfbhzHOilp+rHyV6y4I+7wAViASN/3qxpvb2ttx7c49sMgW2wLfZxLKJF9uKFiywYPhtckDEi85ESiojMR3IpAgr4lGoB2A/EWS4AR//WjX8MGVmKGDVvBMcYY7StjZ6qSrJpl1kSM51t2IwNF5GmTSpmxR2yaReM/xds5xjiDOZm3iCek027oOH6eMdkWKMDOB4M6IA0sXlAyfdk0y56e+IDJMAWMaws5hGYWMmmXU7PfwZTBF75UcGdyGQeQG9k0658ChgZNigoyksB//0Qwj8K2zkB1jzeidHhlKUIJd6RTbuggBW2cwyseTIad46LFU+ax+hunsiUmCebdpkNKq4zg/elRFATZNMuWsx95gKMsRsXcyho3OKCsERFJJiPiIpwMY+ESjwke8nC7T6n+QCMFPxCs+X0QoOCRd0yF2w6iEWylV74Io0TBx/QI0p+3ZyrHyZbbgrPyatsUI/A8GmSnckEf54nXGAvKPmIbEyuna1FscomKBDMiR9OyEY2mc1dJda4REUAw+Zlbpu7kXCj1c9ml1jUjcY+Spu/QnXmCiRqjyfOTLuj5CVKU6zMIzYQS06TnQWcpPCqb87MHKLw/kQzdgv4yJmLA/vg8sB5hi1CuMjCTSfct8E1O7544Hc0vEPIzjc18ZbOzeOqMvXCrFSpUjGqVP4C/xYkeiCFjZAAAAAASUVORK5CYII=" width="35px">
+                        </span>
+                        <span *ngIf="actualAnswers[i][j] !== givenAnswers[i][j] && givenAnswers[i][j] !== 'DVP'">Correct Answer: </span> 
+                        <span>404 or DVP</span>      
+                        </div><br />
+                    </div>
+                    <div *ngIf="j != 0">
+                        <div style="padding-left: 25px;">
+                            <dx-radio-group [value]="givenAnswers[i][j]" [items]="qn.Options" layout="horizontal" [disabled]="true">
+                            </dx-radio-group>
+                        <span class="m-menu__link-icon" *ngIf="actualAnswers[i][j] === givenAnswers[i][j]" style="width: 55px;">
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAMySURBVGhD7Zm9axRBGMYPvwo7vyr1rxCDVukkuBdnDu5Qk0ZBrW3UYHNdzkJQTCDG/AUx7Kwx0SpgfWBjVKz9akxirYKc77N5D8LeO3ezu7Nrsw/8YHO7877PfOzM7KRWqVKl/Go9b+2fDBvngkjdr0cqDIz+WDf6J13/iaFr+u1DfI+ewbPtdnsfF/9/UpE6TeYekLnv9Uj3UmH0N5SdCBunOFx5qr+sH6fWfEat+Vs0lwLEIBYQk8MXKzI+RexIZvJAvbiF2JzGv2icH6IkS1Jyn1COp2cWbx3ktH5E3XuYuvm1lLAQjH6FnJw+n+KWL9N8H6NXvfREGcPGBoYT28imIGxMS4HLRV1mO+k0sdw8QUNnWw5aHpidtNHH2Ja70H1SwKK4tjEl/g6oIefZlpuwwlKh3IuUK3e7N3rdv496Dz/dFu/DS7AWnGR7o4UlXgpUBH3zb3uPY4ZUosP2hgubrHifIgTxTdI8wN/XN6YHnqUh/cVpA0jmzycLF4HNPH6XngdUiTG2aRd1FW2J5QC+yGI+xugZtmkXPWTEwp7IbB4YvcI27aJuog8PobAHcpmPUe/Zpl1US/qSkgoPMmzuTpLffDwTbbNNu1znf0x3rgZ8mAfwxjbtcqkAzLsa8WUeOFVg1BDCHO1q6E73pjfzwGkI4UWRCu/FpVV9m48xepNt2kUVCMXCCWyVgPFCzAOnaTTFQmarRCHmiYuRusc27cKhk1TYhlSJvfgyHxM2zrJNu+LNXKS+igEs2Crh07zzZg6iYdSRggwjWQlc412Qns2GmmV7o4XjPpf1IEn/5fVu3uhfqT5oIKrAghhsBP1ZSLqXHTXHttyFD2ksHHLAMlE/Liw3j7KtdJo0+qoctDwC02ixnWyqG7UoBS4Fo5+wjezC0SIFWhUTFAnlxD9O2EY+4aCVxuK6mKgA6N1b83a42xcOWss57FJz42/GD3Ba/wrCxhWqyJacPDuIGby41OQ0xYqn2Pksi90AtEih1YP14AiHL0+8Yneo9T6L5oawW0bNpl5hixA2WWRojFpzhlghNsncDnpot5fo2uh3uIctMXaVzhuzSpUqDVGt9g9nUxYfKM5I0wAAAABJRU5ErkJggg==" width="35px">
+                        </span>
+                        <span class="m-menu__link-icon" *ngIf="actualAnswers[i][j] !== givenAnswers[i][j]" style="width: 55px;">
+                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAM2SURBVGhD7ZnLbtNAFIYjbgt23FbAC7BCSmYIUqWIcalYsCTitoMtrItgwQKJdE0rlcsjoCJVFCQeAygPAJQNAVTiJCqgZjhneiyF5Iztie1JkfxLnxTLM+f8x554xuNKqVKlsks3m3t7s7LeVfIusNINxAfgRxjI3wj+7gZy3ZyDNthW36/soe7TU3+udhIMLoRKfAGD2oUwEBvYt9eQJyicP3Ua1aOhkk+BX5w5FzAGFLKMMSl8sYIrd62rxHfOTEbaGJvS5C/dPHUArtQzJnGuQBGPdbW6n9LmI32xehDMv+YSFgEU8QpzUvpsoivvzXwEFLGay53wMWxs4HAiG5MJAlznAvskDGqXyY6bOhdOH4NJ5xsX1DPtn4E4QrbSC28fE2xKiCWylU5mhnWZpM7Xdf/2Tf4cg2kLfbhzHOilp+rHyV6y4I+7wAViASN/3qxpvb2ttx7c49sMgW2wLfZxLKJF9uKFiywYPhtckDEi85ESiojMR3IpAgr4lGoB2A/EWS4AR//WjX8MGVmKGDVvBMcYY7StjZ6qSrJpl1kSM51t2IwNF5GmTSpmxR2yaReM/xds5xjiDOZm3iCek027oOH6eMdkWKMDOB4M6IA0sXlAyfdk0y56e+IDJMAWMaws5hGYWMmmXU7PfwZTBF75UcGdyGQeQG9k0658ChgZNigoyksB//0Qwj8K2zkB1jzeidHhlKUIJd6RTbuggBW2cwyseTIad46LFU+ax+hunsiUmCebdpkNKq4zg/elRFATZNMuWsx95gKMsRsXcyho3OKCsERFJJiPiIpwMY+ESjwke8nC7T6n+QCMFPxCs+X0QoOCRd0yF2w6iEWylV74Io0TBx/QI0p+3ZyrHyZbbgrPyatsUI/A8GmSnckEf54nXGAvKPmIbEyuna1FscomKBDMiR9OyEY2mc1dJda4REUAw+Zlbpu7kXCj1c9ml1jUjcY+Spu/QnXmCiRqjyfOTLuj5CVKU6zMIzYQS06TnQWcpPCqb87MHKLw/kQzdgv4yJmLA/vg8sB5hi1CuMjCTSfct8E1O7544Hc0vEPIzjc18ZbOzeOqMvXCrFSpUjGqVP4C/xYkeiCFjZAAAAAASUVORK5CYII=" width="35px">
+                        </span>
+                        <span *ngIf="actualAnswers[i][j] !== givenAnswers[i][j]">Correct Answer: </span> 
+                        <span>{{actualAnswers[i][j]}}</span>      
+                        </div><br />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <br />
+    </ng-container>
+</form>
+</div>
+
+<dx-button
+    [visible]="viewAnswers"
+    style="float: right"
+    type="success"
+    icon="floppy"
+    text="Continue"
+    (click)="continue()"
+></dx-button>

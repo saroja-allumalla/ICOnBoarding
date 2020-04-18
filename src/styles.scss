@@ -1,0 +1,74 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 13px;
+    font-weight: 300;
+    font-family: Poppins;
+    -ms-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    margin: 0;
+    font-family: Poppins;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+    background-color: #fff;
+}
+
+.m-brand.m-brand--skin-dark {
+    background: #CC2131;
+}
+
+.m-page--fluid .m-header, .m-page--wide .m-header {
+    background-color: #292B3A;
+}
+
+::ng-deep .m-menu__link-icon {
+    width: 55px !important;
+}
+
+
+::ng-deep .dx-item .dx-datebox {
+    width: 100%;
+    min-width:100%;
+}
+
+@media print
+{
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
+
+}
+
+::ng-deep .very-disabled {
+    pointer-events: none !important;
+    cursor: default;
+}
+
+
+::ng-deep .dx-field-item-label-text {
+    display: none !important;
+    color: #fff;
+    font-weight: 500;
+}
+
+::ng-deep .m-wizard__step-label {
+    font-size: 13px !important;
+}
+
+.m-wizard.m-wizard--4 .m-wizard__head {
+    padding: none !important;
+}
+

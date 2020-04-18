@@ -1,0 +1,227 @@
+<h1>Record Checks</h1>
+<div *ngIf="driverObject['DriverCleared'] && driverObject['Consent']">
+  <br />
+  <b>Is the Independant Contractor providing a Background Check report?</b>&nbsp;&nbsp;&nbsp;&nbsp;{{driverObject['BCRequired'] ? 'Yes' : 'No'}}<br />
+  <b>Is the Independant Contractor providing a Driver's Abstract?</b>&nbsp;&nbsp;&nbsp;{{driverObject['DARequired'] ?
+  'Yes' : 'No'}}<br />
+  <br />
+  <div *ngIf="driverObject['BCRequired'] && driverObject['DARequired'] && !driverObject['CashPayment']">
+      <dx-button text="Next Steps" type="success" (click)="nextSteps()">
+        </dx-button>
+  </div>
+  <div *ngIf="CashPayment">
+    Payment Done.<br/>
+  </div>
+  <div *ngIf="driverObject['BCRequired'] && !driverObject['DARequired'] && !driverObject['CashPayment']">
+    Please collect the driver's abstract report amount: {{daPrice}}
+  </div>
+  <div *ngIf="!driverObject['BCRequired'] && driverObject['DARequired'] && !driverObject['CashPayment']">
+    Please collect the background check report amount: {{bcPrice}}
+  </div>
+
+  <div *ngIf="!driverObject['BCRequired'] && !driverObject['DARequired'] && !driverObject['CashPayment']">
+    Background check report amount: {{bcPrice}}<br />
+    Driver's abstract report amount: {{daPrice}}
+    <hr />
+    Total Amount to be collected: {{totalAmount}}<br />
+  </div>
+
+  <div *ngIf="!driverObject['BCRequired'] || !driverObject['DARequired']">
+    <div *ngIf="!driverObject['CashPayment']">
+      <br />
+      <div class="dx-field">
+        <div class="dx-field-label"><span style="font-weight: 500; width: 18px;">Please select a method of payment</span></div>
+        <div class="dx-field-value">
+          <dx-select-box [(value)]="modeOfPayment" [dataSource]="['Cash', 'Credit/Debit']" [placeholder]="'Payment Method'"
+            [width]="300"></dx-select-box>
+        </div>
+      </div>
+      <div *ngIf="modeOfPayment === 'Cash'">
+        Amount to be collected: {{totalAmount}}<br />
+        By: {{RecruiterName}}<br />
+        <dx-button [visible]="!paymentDone" text="Collect Cash" type="success" (click)="collectCash()">
+        </dx-button>
+        <p *ngIf="paymentDone"></p>
+      </div>
+      <div *ngIf="modeOfPayment === 'Credit/Debit'">
+        Amount to be collected: {{totalAmount}}<br />
+        <a href="#">Click here</a>&nbsp;to open Payment Gateway Link<br />
+        <dx-button [visible]="!paymentDone" text="Mark as Complete" type="success" (click)="collectCredit()">
+        </dx-button>
+        <p *ngIf="paymentDone">Payment is already collected</p>
+      </div>
+      <dx-button *ngIf="paymentDone" text="Mark as Complete" type="success" (click)="collectCredit()">
+      </dx-button>
+      
+    </div>
+
+      <div *ngIf="viewReceipt && driverObject['CashPayment']">
+        <div id="invoice-POS" style="padding: 15px;"> 
+          <br />
+
+          <div id="top">
+            <div id="top-left" style="float: left; width: 50%; text-align: left; font-size: 12px;">
+              <small><b>
+                  APPLE EXPRESS COURIER INC.<br />
+                  5300 Satellite Drive,<br />
+                  Mississauga, ON L4W 5J2<br />
+                  (905) 602-9499<br />
+                  www.appleexpress.com
+                </b></small>
+            </div>
+            <div id="top-right" style="float: right;">
+              <img alt="" src="../../../../assets/demo/default/media/img/logo/applelogo.jpg" width="220px" height="95px" />
+            </div>
+          </div>
+          <!--End InvoiceTop-->
+
+          <div style="text-align: center">
+            <hr />
+            <h4>Receipt #{{invoiceNumber}}</h4>
+            <hr />
+          </div>
+          <div style="font-size: 13px;">
+            <b>RECEIPT TO:</b> SHIVAM PATEL<br />
+            <b>RECEIPT DATE:</b> 23/02/2019
+          </div>
+          <br />
+          <br />
+          <!--
+        <div id="mid">
+          <div class="info">
+            <h2>Contact Info</h2>
+            <p> 
+                Address : 5300 Satellite Drive, Mississauga, ON L4W 5J2 <br/>
+                Email   : support@appleexpress.com<br/>
+                Phone   : (905) 602-9499<br/>
+            </p>
+          </div>
+        </div>End Invoice Mid-->
+
+          <div id="bot">
+
+            <div id="table">
+              <table>
+                <tr class="tabletitle">
+                  <td class="item">
+                    <h2>Item</h2>
+                  </td>
+                  <td class="Rate">
+                    <h2>Qty</h2>
+                  </td>
+                  <td class="Rate">
+                    <h2>Sub Total</h2>
+                  </td>
+                </tr>
+
+                <tr class="service">
+                  <td class="tableitem">
+                    <p class="itemtext">Criminal Background Check</p>
+                  </td>
+                  <td class="tableitem">
+                    <p class="itemtext">{{driverObject['BCRequired'] ? 0 : 1}}</p>
+                  </td>
+                  <td class="tableitem">
+                    <p class="itemtext">${{bcPrice | number:'2.1-5'}}</p>
+                  </td>
+                </tr>
+
+                <tr class="service">
+                  <td class="tableitem">
+                    <p class="itemtext">Drivers Abstract</p>
+                  </td>
+                  <td class="tableitem">
+                    <p class="itemtext">{{driverObject['DARequired'] ? 0 : 1 }}</p>
+                  </td>
+                  <td class="tableitem">
+                    <p class="itemtext">${{daPrice | number:'2.1-5'}}</p>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr class="tabletitle">
+                  <td></td>
+                  <td class="Rate" style="border-bottom: 1px solid #212121">
+                    <h2>HST @ 13%</h2>
+                  </td>
+                  <td class="payment" style="border-bottom: 1px solid #212121">
+                    <h2>${{taxAmount | number:'2.1-5'}}</h2>
+                  </td>
+                </tr>
+
+                <tr class="tabletitle">
+                  <td></td>
+                  <td class="Rate">
+                    <h2>Total</h2>
+                  </td>
+                  <td class="payment">
+                    <h2>${{totalAmount | number:'2.1-5'}}</h2>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <!--End Table-->
+            <div id="legalcopy">
+              <p class="legal"><strong>Thank you for your business!</strong>  The payment was successful.
+              </p>
+            </div>
+
+          </div>
+          <!--End InvoiceBot-->
+        </div>
+        <!--End Invoice-->
+
+
+
+        <dx-button text="Print Receipt" type="success" (click)="printReceipt()">
+        </dx-button>
+        <!--
+          <dx-button text="Report Status" type="success" (click)="checkReport()">
+          </dx-button>
+        -->
+        <dx-button text="Next Steps" type="success" (click)="nextSteps()">
+        </dx-button>
+      </div>
+
+
+
+
+
+
+
+      <!--
+    <div id="receipt" style="width: 500px; text-align: center; position: relative;">
+        <br/>
+        <img alt="" src="./assets/demo/default/media/img/logo/logo_default_dark.png" width="350px"/><br/><br/>
+        <h3>Payment Receipt</h3><br/>
+        <table style="width: 95%; border: 1px solid #212121; text-align: left !important; border-bottom: 1px solid #212121;">
+          <tr style="border-bottom: 1px solid #212121;">
+            <th style="border: 1px solid #212121">Item</th>
+            <th style="border: 1px solid #212121">Price</th>
+          </tr>
+          <tr>
+            <td>Criminal Background Check</td>
+            <td>{{bcPrice}}</td>
+          </tr>
+          <tr>
+            <td>Drivers Abstract</td>
+            <td>{{daPrice}}</td>
+          </tr>
+          <tr></tr><tr></tr><tr></tr>
+        </table>
+    </div>
+  </div>
+-->
+  </div>
+</div>
+<div *ngIf="!driverObject['DriverCleared']">
+  Until this Contractor clears the interview, you cannot proceed with this step.
+</div>
+<div *ngIf="driverObject['DriverCleared'] && !driverObject['Consent']">
+  Until the Contractor gives Consent, you cannot proceed with this step.
+</div>

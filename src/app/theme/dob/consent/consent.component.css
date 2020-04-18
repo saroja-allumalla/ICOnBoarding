@@ -1,0 +1,18 @@
+.container1{
+    border: 1px solid black;
+    width: 900px;
+    height: 300px;
+  }
+
+::ng-deep #scrollview-demo {
+    min-height: 200px;
+    max-height: 700px;
+}
+
+::ng-deep #scrollview {
+    height: 500px;
+    position: relative;
+    top: 0;
+    bottom: 300px;
+    padding: 20px;
+}

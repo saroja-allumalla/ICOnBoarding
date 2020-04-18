@@ -1,0 +1,115 @@
+<style>
+    .container{
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    padding: 100px 40px;
+    text-align: center;
+    color: white;
+  }
+  .container p {
+    max-width: 600px;
+    margin: 40px auto;
+    font-size: 15px;
+    font-weight: 300;
+  }
+  .email-box{
+    height: 40px;
+    justify-content: center;
+    display: flex; /*its better to use inline-flex*/
+  }
+  .email-box i{
+    background: #2f3542;
+    width: 40px;
+    line-height: 40px;
+  }
+  .tbox,.btn-blank{
+    border: none;
+    outline: none;
+  }
+  .tbox{
+    width: 200px;
+    transition: 0.6s;
+  }
+  .email-box:hover > .tbox,.tbox:focus{
+    width: 200px;
+    padding: 0 10px;
+  }
+  .btn-blank{
+    background: #2f3542;
+    color: white;
+    padding: 0 10px;
+    height: 35px;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  </style>
+  
+  <div class="container">
+    <!--<form [formGroup]="signupForm" (ngSubmit)="onSubmit()">-->
+      <a href="#">
+        <img src="./assets/app/media/img//logos/apple_logo.jpg" style="width: 440px;">
+      </a>
+      <br /> <br />
+      <h2 style="color: #28064e;">Hey, good to see you!</h2>
+      <br />
+      <!--<span style="color: #212121">Select the documents you have with you today</span>
+      <br/>
+      <br/>
+      <button 
+        class="btn" 
+        type="button"
+        [ngStyle]="{'background-color': haveDL ? '#34bfa3' : '#2f3542', 'color': haveDL ? '#212121' : 'whitesmoke'}"
+        (click)="userHasDL()"
+      >Drivers License
+      </button>
+      &nbsp;&nbsp;&nbsp;
+      <button 
+        class="btn"
+        type="button"
+        [ngStyle]="{'background-color': haveVR ? '#34bfa3' : '#2f3542', 'color': haveVR ? '#212121' : 'whitesmoke'}"
+        (click)="userHasVR()"
+      >Vehicle Registration
+      </button>
+      &nbsp;&nbsp;&nbsp;
+      <button 
+        class="btn"
+        type="button"
+        [ngStyle]="{'background-color': haveVI ? '#34bfa3' : '#2f3542', 'color': haveVI ? '#212121' : 'whitesmoke'}"
+        (click)="userHasVI()"
+      >Vehicle Insurance
+      </button>
+      <br/>
+      <br/>-->
+      <span style="color: #212121">Start by clicking an option below,</span><br/><br/>
+      <!--<span style="color: #212121">Begin by entering your email or cell number,</span><br/><br/>-->
+      <!--div class="email-box">
+        <i class="la la-user"></i>
+        <input class="tbox" type="email" formControlName="email" placeholder=" username" (input)="onSearchChange($event.target.value)" />
+      </div>
+      <br />
+      <div class="email-box">
+        <i class="la la-key"></i>
+        <input class="tbox" type="email" formControlName="email" placeholder=" password" (input)="onSearchChange($event.target.value)" />
+      </div>
+      <br />
+      <span style="color: #212121">OR</span>
+      <br />
+      <br /><span style="color: #212121"></span>
+      <div class="email-box">
+        <i class="la la-phone"></i>
+        <input class="tbox" type="text" id="tel" phoneMask [preValue]="signupForm.value.phone" placeholder="(000) 000 - 0000"
+          (input)="onPhoneChange($event.target.value)" [phoneControl]="signupForm.controls['phone']" formControlName="phone"
+          maxlength="14" />
+      </div>
+  
+      <span *ngIf="phoneError" style="color: red;">Phone Number is invalid</span>
+      <br />
+      <button class="btn" type="submit">{{ buttonText }}</button>
+      --><br/>
+      <button class="btn-blank" (click)="onSubmit()" type="submit">BEGIN NEW APPLICATION</button><BR/>
+      <br /><span style="color: #212121">OR</span><BR/><br/>
+      <button class="btn-blank" (click)="onResumeSubmit()" type="submit">RESUME APPLICATION</button>
+      <!--<button class="btn" type="submit">Resume Application</button>-->
+    <!--/form-->
+  </div>

@@ -1,0 +1,51 @@
+
+<!--
+<div class="dx-fieldset">
+    <div class="dx-field">
+        <div class="dx-field-label">Please Select a Payment Type</div>
+        <div class="dx-field-value">
+            <dx-drop-down-box
+            [(value)]="paymentType"
+            placeholder="Please select a payment type"
+            [showClearButton]="true"
+            [dataSource]="paymentTypeDataSource"
+            >
+            </dx-drop-down-box>
+        </div>
+    </div>
+</div>
+-->
+
+
+<h1>Cash Payment</h1>
+<hr/>
+<span *ngIf="!paymentDone" style="font-weight:700">Amount to be Collected:</span>{{amountToBeCollected}}<br *ngIf="!paymentDone"/>
+<span *ngIf="paymentDone" style="font-weight:700">Amount Collected:</span>{{amountToBeCollected}}<br *ngIf="paymentDone"/>
+<span style="font-weight:700">Package Selected:</span>{{packageSelected}}<br />
+<hr/>
+<span style="font-weight:700">Collecting Recruiter Name: </span>{{ recruiterName}}<br />
+<span style="font-weight:700">Collecting Recruiter Email: </span>{{ recruiterEmail}}<br />
+<hr/>
+<span style="font-weight:700"></span><br />
+<div *ngIf="!paymentDone">
+    <dx-button id="button" icon="money" type="success" text="Collect" (click)="onCashPayment()"></dx-button><br/>
+    <small>After collecting cash, you must use the "Self Pay Portal" to pay for broker through company card.</small>
+</div>
+<div *ngIf="paymentDone">
+    <small>Cash has been collected for this user. Make sure to complete the next steps.</small>
+</div>
+
+<br/><br/>
+<div *ngIf="paymentDone">
+    <div>
+        <h3>Sterling self pay portal</h3>
+        <div id="candidate-pay">
+        <a (click)="onClickPayment()" class="button primary">
+            Get Started
+        </a>
+        </div>
+    </div>
+</div>
+
+
+

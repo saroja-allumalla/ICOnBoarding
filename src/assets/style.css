@@ -1,0 +1,100 @@
+.m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item>.m-menu__heading .m-menu__link-text,
+.m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item>.m-menu__link .m-menu__link-text {
+	color: #212121;
+}
+
+.m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item.m-menu__item--open>.m-menu__heading .m-menu__link-text,
+.m-aside-menu.m-aside-menu--skin-dark .m-menu__nav>.m-menu__item.m-menu__item--open>.m-menu__link .m-menu__link-text {
+	color: #fff;
+}
+
+.multi-column-list {
+	-moz-column-count: 2;
+	-moz-column-gap: 20px;
+	-moz-column-fill: auto;
+	-webkit-column-count: 2;
+	-webkit-column-gap: 20px;
+	-webkit-column-fill: auto;
+	column-count: 2;
+	column-gap: 20px;
+	column-fill: auto;
+	list-style-position: inside;
+}
+
+/* Add application styles & imports to this file! */
+/* .ng-sidebar {
+    width: 20rem;
+}
+
+.ng-sidebar--right {
+    color: red !important;
+    background: antiquewhite;
+    width: 12rem;
+} */
+
+.loading {
+	padding: 1em;
+}
+
+.side-panel {
+	height: 100%;
+	width: 100%;
+}
+
+.side-panel-header {
+	align-items: center;
+	background: #eee;
+	box-shadow: 0 0.1em 1.5em rgba(#ddd, 0.5);
+	color: #eee;
+	display: flex;
+	padding: 1em;
+}
+
+.side-panel-header__toggle {
+	background: transparent;
+	border: 0.15rem solid #eee;
+	border-left: 0;
+	border-right: 0;
+	cursor: pointer;
+	font-size: 0;
+	height: 1.5rem;
+	margin-right: 1rem;
+	position: relative;
+	width: 2rem;
+}
+
+.side-panel-sidebar {
+	background-color: #fff;
+	box-shadow: rgba(69, 65, 78, 0.08) 0px 1px 15px 5px;
+	/* padding: 2em; */
+}
+
+.side-panel-contents {
+	/* padding: 0 2em; */
+}
+
+.side-panel-control {
+	background-color: light-grey;
+	border: 1px solid dark-grey;
+	cursor: pointer;
+	margin-bottom: 0.5em;
+	padding: 0.5em 2em;
+	transition: background-color 0.15s;
+}
+
+.loading-indicator {
+	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAABkCAQAAABebbrxAAABD0lEQVRo3u2XvQ3CMBCFLbmjYYGsAA2wA1X2gAbEAEwB2eIKflagh6zACJAuUihASUic+M5GNH56dT7J8efTPUXKkDkzrS8LpQAEMBygcwAss2UGQADDBmLa+AMvzAAIYNhATBt/YMEMgACGDcS0wbQBEEAAAQQQwD8CEzaiL7sKqOnojTuQrh95SKkX7kqD5j+M6O6Mu1NkupQJZU64B426bjmmXIzLKe7TZiUGLmweyhTa28XWdJKpYn8pXIVub1U4T4+jUKkKbyWeWhR6Vqpwd+w+hb5U4S/ta54qkhZgVihxrxWaznZVZD2lqVDaVkVafOoKGVWRN6nZR6GMxr+qZjHl3aq4db0NLXld7wVjuu7NS9f7yAAAAABJRU5ErkJggg==) 0 0 no-repeat;
+	background-size: 100%;
+}
+
+.dx-datagrid-content .dx-datagrid-table .dx-row>td,
+.dx-datagrid-rowsview .dx-selection.dx-row.dx-row-lines>td,
+.dx-datagrid-rowsview .dx-selection.dx-row:hover.dx-row-lines>td {
+	border-bottom-color: #ddd;
+}
+
+
+.tool-icon {
+	font-size: 20px;
+	color: #000;
+}

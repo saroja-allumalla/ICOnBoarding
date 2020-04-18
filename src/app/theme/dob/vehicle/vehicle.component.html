@@ -1,0 +1,199 @@
+<form action="your-action" (submit)="onFormSubmit($event)">
+  <dx-form id="vehicle-form"
+      [formData]="driver"
+      [colCount]="2"      
+      [readOnly]="false"
+      [showColonAfterLabel]="true"
+      [showValidationSummary]="false"
+      validationGroup="vehicleData"
+      #vehicleInformationForm>
+        <dxi-item itemType="group" caption="Vehicle" style="font-weight: 500;">
+              <dxi-item dataField="VehicleType"
+                  editorType="dxSelectBox"
+                  [editorOptions]="{ dataSource: vehicleType, displayExpr: 'Description', valueExpr: 'VehicleTypeID'}">
+                  <dxi-validation-rule 
+                      type="required"
+                      message="Vehicle Type is required">
+                  </dxi-validation-rule>
+              </dxi-item>
+              <dxi-item dataField="LicenseNumber" editorType="dxTextBox"
+                    [editorOptions]="{ 
+                        mask: 'X####-#####-#####',
+                        maskRules: licenseNumberRules,
+                        useMaskedValue: true,
+                        maskInvalidMessage: 'License Number must be in correct format'
+                    }">
+                    <dxo-label
+                        text="Driver's License Number">
+                    </dxo-label>
+                    <dxi-validation-rule 
+                        type="custom" 
+                        [reevaluate]="true" 
+                        [validationCallback]="licenseNumberCheck" 
+                        message="License Number could not be validated">
+                    </dxi-validation-rule> 
+                    <dxi-validation-rule 
+                        type="required"
+                        message="License Number must not be empty">
+                    </dxi-validation-rule>
+                </dxi-item>
+              <dxi-item
+                  dataField="LicenseIssueDate"
+                  editorType="dxDateBox"
+                  [editorOptions]="{ 
+                      invalidDateMessage: 'The date must have the following format: MM/dd/yyyy',
+                      openOnFieldClick: true,
+                      width: '200px'
+                    }">
+                  <dxo-label
+                      text="Driver's License Issue Date">
+                  </dxo-label>
+                  <dxi-validation-rule 
+                      type="required"
+                      message="License Issue Date is required">
+                  </dxi-validation-rule>
+              </dxi-item>
+              <dxi-item 
+                  dataField="LicenseExpiryDate"
+                  editorType="dxDateBox"
+                  [editorOptions]="{ 
+                      invalidDateMessage: 'The date must have the following format: MM/dd/yyyy',
+                      openOnFieldClick: true
+                     }">
+                  <dxo-label
+                      text="Driver's License Expiry Date">
+                  </dxo-label>
+                  <dxi-validation-rule 
+                      type="required"
+                      message="License Expiry Date is required">
+                  </dxi-validation-rule>
+              </dxi-item>
+
+              <dxi-item dataField="VehicleVinNo">
+                    <dxi-validation-rule 
+                    type="custom" 
+                    [reevaluate]="true" 
+                    [validationCallback]="vehicleVinCheck" 
+                    message="Vehicle Vin is not a valid VIN"></dxi-validation-rule>    
+                  <dxi-validation-rule 
+                      type="required"
+                      message="Vehicle VIN No: is required">
+                  </dxi-validation-rule>
+              </dxi-item>
+
+              <dxi-item dataField="VehicleMake">
+                  <dxi-validation-rule 
+                      type="required"
+                      message="Vehicle Make is required">
+                  </dxi-validation-rule>
+              </dxi-item>
+              <dxi-item dataField="VehicleModel">
+                  <dxi-validation-rule 
+                      type="required"
+                      message="Vehicle Model is required">
+                  </dxi-validation-rule>
+              </dxi-item>
+              <dxi-item dataField="VehicleYear">
+                  <dxi-validation-rule 
+                      type="required"
+                      message="Vehicle Year is required">
+                  </dxi-validation-rule>
+              </dxi-item>
+      </dxi-item>
+      <dxi-item itemType="group" caption="Vehicle Insurance" style="font-weight: 500;">
+          <dxi-item dataField="VehicleInsurance">
+              <dxo-label
+                text="Insurance Company Name"
+              >
+              </dxo-label>
+              <dxi-validation-rule 
+                  type="required"
+                  message="Insurance Company Name is required">
+              </dxi-validation-rule>
+          </dxi-item>
+          <dxi-item dataField="InsurancePolicyNo">
+              <dxi-validation-rule 
+                  type="required"
+                  message="Insurance Policy No is required">
+              </dxi-validation-rule>
+          </dxi-item>
+          <dxi-item 
+              dataField="InsurancePolicyExpiryDate"
+              editorType="dxDateBox"
+              [editorOptions]="{ 
+                  invalidDateMessage: 'The date must have the following format: MM/dd/yyyy',
+                  openOnFieldClick: true
+                 }">
+              <dxo-label
+                  text="Insurance Policy Expiry Date">
+              </dxo-label>
+              <dxi-validation-rule 
+                  type="required"
+                  message="Insurance Policy Expiry Date is required">
+              </dxi-validation-rule>
+          </dxi-item>
+          <dxi-item dataField="LicensePlateNo">
+              <dxi-validation-rule 
+                  type="required"
+                  message="License Plate No is invalid">
+              </dxi-validation-rule>
+          </dxi-item>
+
+          <dxi-item 
+              dataField="LicensePlateExpiryDate"
+              editorType="dxDateBox"
+              [editorOptions]="{ 
+                  invalidDateMessage: 'The date must have the following format: MM/dd/yyyy',
+                  openOnFieldClick: true
+                }">
+              <dxo-label
+                  text="License Plate Expiry Date">
+              </dxo-label>
+              <dxi-validation-rule 
+                  type="required"
+                  message="License Plate Expiry Date is required">
+              </dxi-validation-rule>
+          </dxi-item>
+
+          <dxi-item dataField="WorkerCompensationClass"
+                [visible]="false"
+              editorType="dxSelectBox"
+              [editorOptions]="{ dataSource: workerCompensationClass }">
+              <dxi-validation-rule 
+                  type="required"
+                  message="Worker Compensation Class is required">
+              </dxi-validation-rule>
+          </dxi-item>
+      </dxi-item>
+      <dxi-item colSpan="2">
+        <div *dxTemplate class="text-align-center margin-top-large">
+           <dx-button id="button" text="CLEAR" 
+                      class="standard-button "
+                      icon="clear"
+                      type="danger" [useSubmitBehavior]="false" (click)="resetForm($event)">
+           </dx-button>
+           <dx-button id="button" text="PREVIOUS" class="standard-button" type="default" [useSubmitBehavior]="false" icon="back"
+                   (click)="onPrevious($event)">
+               </dx-button>
+               <dx-button
+               id="button"
+               text="NEXT"
+               icon="save"
+               type="success"
+               class="standard-button standard-button-primary"
+               [useSubmitBehavior]="true">
+           </dx-button>                                                            
+        </div>
+    </dxi-item> 
+  </dx-form>
+</form>
+
+
+<br/><br/>
+Review of Vehicle From DMV
+<br/>
+<div style="font-size: 12px;">
+    <ng-container *ngFor="let object of vehicleObject; let i = index" >
+        <b>{{object['Variable']}}:</b>&nbsp;&nbsp;{{object['Value']}}<br/>
+    </ng-container>
+</div>

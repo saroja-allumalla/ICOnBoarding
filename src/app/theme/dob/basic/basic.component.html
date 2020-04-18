@@ -1,0 +1,255 @@
+ <form action="your-action" (submit)="onFormSubmit($event)">
+        <dx-form id="driver-form"
+            [formData]="driver"
+            [colCount]="3"            
+            [readOnly]="false"
+            [showColonAfterLabel]="true"
+            [showValidationSummary]="false"
+            validationGroup="driverData"
+            [items]="formItems"
+            #driverInformationForm>
+            <dxi-item itemType="group" caption="General" style="font-weight: 500;">
+                <dxi-item [visible]="true" dataField="FirstName">
+                        <dxi-validation-rule 
+                        type="required"
+                        message="First Name is required">
+                    </dxi-validation-rule>               
+                    <dxi-validation-rule 
+                        type="pattern"
+                        [pattern]="namePattern"
+                        message="Do not use digits in the Name">
+                    </dxi-validation-rule>
+                </dxi-item>
+                <dxi-item [visible]="true" dataField="MiddleName">               
+                    <dxi-validation-rule 
+                        type="pattern"
+                        [pattern]="namePattern"
+                        message="Do not use digits in the Name">
+                    </dxi-validation-rule>
+                </dxi-item>
+                <dxi-item [visible]="true" dataField="LastName">
+                        <dxi-validation-rule 
+                        type="required"
+                        message="Last Name is required">
+                    </dxi-validation-rule>               
+                    <dxi-validation-rule 
+                        type="pattern"
+                        [pattern]="namePattern"
+                        message="Do not use digits in the Name">
+                    </dxi-validation-rule>
+                </dxi-item>
+                <dxi-item dataField="BrokerRegion"
+                    [visible]="false"
+                    editorType="dxSelectBox"
+                    [editorOptions]="{ dataSource: brokerRegion, value: driver.BrokerRegion }">
+                    <dxo-label text="Where is the work based at?"></dxo-label>
+                    <dxi-validation-rule 
+                        type="required"
+                        message="Broker Region is required">
+                    </dxi-validation-rule>
+                </dxi-item>
+                <dxi-item dataField="BrokerType"
+                    editorType="dxSelectBox"
+                    [editorOptions]="{ dataSource: brokerType, value: driver.BrokerType }"
+                    >  
+                    <!--
+                    <div *dxTemplate>
+                    <dx-select-box 
+                        [dataSource]="brokerType"
+                        [(value)]="driver.BrokerType"
+                        (onValueChanged)="onValueChanged($event)"
+                    >
+                    </dx-select-box> 
+                    </div>
+                    -->
+                    <dxo-label>Type</dxo-label>
+                    <dxi-validation-rule 
+                        type="required"
+                        message="Broker Type is required">
+                    </dxi-validation-rule>
+                </dxi-item>
+                <dxi-item [visible]="driver.BrokerType === 'COMPANY'" dataField="CompanyName">
+                    <dxi-validation-rule 
+                        type="required"
+                        message="Company Name is required">
+                    </dxi-validation-rule>
+                </dxi-item>
+                
+                <dxi-item [visible]="driver.BrokerType === 'INDIVIDUAL'"  dataField="SIN"
+                    editorType="dxTextBox"
+                    [editorOptions]="{ 
+                        mask: vendorMask,
+                        value: driver.SIN,
+                        maskRules: vendorMaskRules,
+                        useMaskedValue: true,
+                        maskInvalidMessage: 'The phone must have a correct format'
+                    }">
+                    <dxi-validation-rule 
+                        type="custom" 
+                        [reevaluate]="true" 
+                        [validationCallback]="ssnValidCheck" 
+                        message="SSN is Invalid">
+                    </dxi-validation-rule>                    
+                    <dxi-validation-rule 
+                        type="required"
+                        message="Phone is required">
+                    </dxi-validation-rule>
+                </dxi-item>
+
+                <dxi-item [visible]="driver.BrokerType === 'COMPANY'" dataField="BIN"> 
+                  
+                </dxi-item>
+
+                <dxi-item [visible]="driver.BrokerType === 'COMPANY'" dataField="GST"> 
+                 
+                </dxi-item>
+
+            </dxi-item>
+            <dxi-item itemType="group" caption="Address">
+                <dxi-item>
+                <input autocorrect="on" autocapitalize="on" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl"/>
+                </dxi-item>
+                <dxi-item dataField="StreetName"
+                editorType="dxTextBox"
+                [editorOptions]="{ disabled: false, value: dlStreetName }">
+                    <dxi-validation-rule 
+                        type="required"
+                        message="Street Name is required">
+                    </dxi-validation-rule>
+                </dxi-item>
+
+                <dxi-item dataField="Unit" 
+                editorType="dxTextBox"
+                [editorOptions]="{ disabled: false, value: dlUnit }">
+                </dxi-item>
+
+                <dxi-item dataField="City" 
+                editorType="dxTextBox"
+                [editorOptions]="{ disabled: false, value: city }">
+                    <dxi-validation-rule 
+                        type="required"
+                        message="City is required">
+                    </dxi-validation-rule>
+                </dxi-item>
+
+                <dxi-item dataField="Country" 
+                editorType="dxTextBox"
+                [editorOptions]="{ disabled: false, value: dlCountry }">
+                    <dxi-validation-rule 
+                        type="required"
+                        message="Country is required">
+                    </dxi-validation-rule>
+                </dxi-item>
+
+
+                <dxi-item dataField="Province" 
+                editorType="dxTextBox"
+                [editorOptions]="{ disabled: false, value: dlProvince }">
+                    <dxi-validation-rule 
+                        type="required"
+                        message="Province is required">
+                    </dxi-validation-rule>
+                </dxi-item>
+
+                <dxi-item dataField="PostalCode" 
+                editorType="dxTextBox"
+                [editorOptions]="{ disabled: false, value: dlPostalCode }">
+                    <dxi-validation-rule 
+                        type="required"
+                        message="Postal Code is required">
+                    </dxi-validation-rule>
+                </dxi-item>
+            </dxi-item>
+            <dxi-item itemType="group" caption="Email, Phone and Fax">
+                <dxi-item
+                    dataField="DOB"
+                    editorType="dxDateBox"
+                    [editorOptions]="{ 
+                        invalidDateMessage: 'The date must have the following format: MM/dd/yyyy' }">
+                    <dxo-label
+                        text="Date of Birth">
+                    </dxo-label>
+                    <dxi-validation-rule 
+                        type="required"
+                        message="License Issue Date is required">
+                    </dxi-validation-rule>
+                </dxi-item>
+                <dxi-item dataField="Email">
+                    <dxi-validation-rule 
+                        type="required"
+                        message="Email is required">
+                    </dxi-validation-rule>
+                    <dxi-validation-rule 
+                        type="email"
+                        message="Email is invalid">
+                    </dxi-validation-rule>
+                </dxi-item>
+                <dxi-item dataField="AlternateEmail">
+                    <dxi-validation-rule 
+                        type="email"
+                        message="Email is invalid">
+                    </dxi-validation-rule>
+                </dxi-item>
+                <dxi-item dataField="HomePhone"
+                    editorType="dxTextBox"
+                    [editorOptions]="HomePhoneEditorOptions">
+                    <dxi-validation-rule 
+                        type="required"
+                        message="Phone is required">
+                    </dxi-validation-rule>
+                    <dxi-validation-rule 
+                        type="pattern"
+                        [pattern]="phonePattern"
+                        message="The phone must have a correct format">
+                    </dxi-validation-rule>
+                </dxi-item>
+                <dxi-item dataField="CellPhone"
+                    editorType="dxTextBox"
+                    [editorOptions]="CellPhoneEditorOptions">
+                    <dxi-validation-rule 
+                        type="required"
+                        message="Cell Phone is required">
+                    </dxi-validation-rule>
+                    <dxi-validation-rule 
+                        type="pattern"
+                        [pattern]="phonePattern"
+                        message="The phone must have a correct format">
+                    </dxi-validation-rule>
+                </dxi-item>
+                <dxi-item dataField="EmergencyPhone"
+                editorType="dxTextBox"
+                    [editorOptions]="EmergencyPhoneEditorOptions">
+                    <dxi-validation-rule 
+                        type="required"
+                        message="Emergency Phone is required">
+                    </dxi-validation-rule>
+                    <dxi-validation-rule 
+                        type="pattern"
+                        [pattern]="phonePattern"
+                        message="The phone must have a correct format">
+                    </dxi-validation-rule>
+                </dxi-item>             
+                <dxi-item dataField="Fax"></dxi-item>
+            </dxi-item>
+            <dxi-item colSpan="3">
+                <div *dxTemplate class="text-align-center margin-top-large">
+                   <dx-button id="button" text="CLEAR" 
+                              class="standard-button"
+                              icon="clear"
+                              type="danger" [useSubmitBehavior]="false" (click)="resetForm($event)">
+                   </dx-button>
+                   <dx-button id="button" text="PREVIOUS" class="standard-button" type="default" [useSubmitBehavior]="false" icon="back"
+                      (click)="onPrevious($event)">
+                  </dx-button>
+                   <dx-button                    
+                   id="button"
+                   text="NEXT"
+                   icon="save"
+                   type="success"
+                   class="standard-button standard-button-primary"
+                   [useSubmitBehavior]="true">
+                   </dx-button>
+                </div>
+            </dxi-item>
+        </dx-form>
+</form>

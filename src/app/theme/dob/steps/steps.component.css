@@ -1,0 +1,187 @@
+.list-container {
+    height: auto;
+    min-height: 100px;
+    position: relative;
+    background: white;
+    margin: 15px 15px 15px 0px;
+    box-sizing: border-box;
+    display: block;
+}
+
+::ng-deep .dx-fileuploader-button {
+    background-color: #A0A0A0;
+    font-weight: 500;
+}
+
+
+
+::ng-deep .error-container {
+    height: auto;
+    position: relative;
+    top: 0;
+    bottom: 0;
+    background: white;
+    margin: 15px 15px 15px 0px;
+    box-sizing: border-box;
+    padding: 50px;
+    color: red;
+    border: 2px solid #FF0000;
+    border-radius: 15px;
+}
+
+::ng-deep .product {
+    height: 65px;
+}
+::ng-deep .product > div.left-name {
+    height: 100%;
+    width: 95px;
+    float: left;
+}
+
+::ng-deep .dx-widget .dx-fileuploader .dx-fileuploader-show-file-list .dx-fileuploader-empty {
+    float: left;
+}
+
+.status {
+    width: 45%;
+    float: right;
+}
+
+.main {
+    width: 50%;
+    position: relative;
+}
+
+.container1 {
+    flex-direction: column;
+    background: white;
+}
+
+::ng-deep .dx-fileuploader-file-status-message {
+    font-weight: 500;
+    color: darkgreen;
+}
+
+
+::ng-deep .dx-fileuploader-file-name {
+    font-weight: 800;
+    color: darkgreen;
+}
+
+
+::ng-deep .product > div {
+    padding-left: 10px;
+    vertical-align: top;
+    line-height: 65px;
+    font-size: 20px;
+    float: left;
+    position: relative;
+}
+::ng-deep .product > div.price {
+    float: right;
+    font-size: 18px;
+}
+
+::ng-deep .product > div.price-right {
+    float: right;
+    font-size: 18px;
+    color: green;
+}
+
+.group {
+    font-size: 22px;
+    font-weight: 500;
+}
+
+::ng-deep .file-uploader-block {
+    width: 50%;
+    float: left;
+}
+
+::ng-deep .note {
+    font-size: 10pt;
+    color: #484848;
+    margin-left: 9px;
+}
+
+::ng-deep .note > span {
+	font-weight: 700
+}
+
+::ng-deep .main-block {
+    position: relative;
+    max-width: 900px;
+    min-width: 210px;
+    vertical-align: center;
+    float: left;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border-radius: 15px;
+    text-align: left;
+    padding: 8px;
+}
+
+
+
+.container {
+  width: 100%;
+}
+
+.splashes {
+  padding: 50px;
+  padding-left: 0px !important;
+  width: auto;
+  border-radius: 15px;
+}
+
+.bottom-buttom {
+  float: right;
+}
+
+.bottom-left-button {
+  float: left;
+}
+
+.button  {
+  background-color: greenyellow;
+  color: white;
+}
+
+::ng-deep .dx-fileuploader-button {
+  background-color: #a1a1a1;
+}
+
+::ng-deep .bottom-buttom .dx-button .dx-icon {
+    float: right;
+}
+
+::ng-deep .dx-button .dx-icon {
+    transform: scale(0.7);
+}
+
+
+body {
+    background-color: #F0F0F0;
+}
+#app2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 60px;
+}
+#video {
+    background-color: #000000;
+}
+#canvas {
+    display: none;
+}
+li {
+    display: inline;
+    padding: 5px;
+}
