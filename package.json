@@ -71,7 +71,7 @@
     "@angular/language-service": "^5.2.0",
     "@ngrx/schematics": "^6.1.2",
     "@types/lodash": "^4.14.137",
-    "electron": "^4.2.9",
+    "electron": "^15.5.5",
     "typescript": "3.5.1"
   }
 }
